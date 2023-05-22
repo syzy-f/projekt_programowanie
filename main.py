@@ -59,8 +59,7 @@ def main():
                 for element in all_sprites:
                     element.item_move()
             if event.type == item_spawn:
-                all_sprites.add(Item())
-        #test sprajtów
+                all_sprites.add(Car())
         #sterowanie funkcjonalność
         controls(pygame.key.get_pressed(),player)
         draw_window(player)
