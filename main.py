@@ -56,16 +56,18 @@ def main():
             if event.type == pygame.QUIT:
                 run = False
             if event.type == item_move:
-                for element in item_list:
+                for element in all_sprites:
                     element.item_move()
             if event.type == item_spawn:
-                item_list.append(Item())
-
+                all_sprites.add(Item())
+        #test sprajtów
         #sterowanie funkcjonalność
         controls(pygame.key.get_pressed(),player)
         draw_window(player)
-        for element in item_list:
-            draw_item(element,WIN)
+        for element in all_sprites:
+            draw_sprites(WIN)
+            element.item_kill()
+        # Update
         refresh()
     pygame.quit()
 
