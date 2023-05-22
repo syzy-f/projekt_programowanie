@@ -1,0 +1,1 @@
+#klasa postaci do zrobienia

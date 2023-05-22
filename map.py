@@ -1,0 +1,1 @@
+#klasa generująca mape do zrobienia

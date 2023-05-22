@@ -1,0 +1,1 @@
+#klasy przeszkód

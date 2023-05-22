@@ -1,4 +1,4 @@
-#sterowanie wsad oraz prędkość
+#sterowanie wsad oraz prędkość prototyp, do zaimplementowania ściąganie sterowanie z ustawień oraz prędkości z klasy postaci
 import pygame
 def controls(keys_pressed,player):
     UP = pygame.K_w
