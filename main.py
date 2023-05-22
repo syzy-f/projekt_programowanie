@@ -1,4 +1,5 @@
 import pygame, os
+from controls import controls
 WIDTH, HEIGHT = 1600, 900
 WIN = pygame.display.set_mode((WIDTH,HEIGHT))
 #tytuł okienka 
@@ -9,22 +10,17 @@ WHITE = (255,255,255)
 #liczba fpsów
 FPS = 60
 #import modelu postaci
-CHARACTER_MODEL_IMAGE = pygame.image.load(os.path.join('assets','mario.png'))
+CHARACTER_MODEL_IMAGE = pygame.image.load(os.path.join('assets','juki.webp'))
 #zmiana wielkości modelu postaci
-CHARACTER_MODEL_WIDTH = 50
-CHARACTER_MODEL_HEIGHT = 50
+CHARACTER_MODEL_WIDTH = 200
+CHARACTER_MODEL_HEIGHT = 200
 CHARACTER_MODEL = pygame.transform.scale(CHARACTER_MODEL_IMAGE,(CHARACTER_MODEL_WIDTH,CHARACTER_MODEL_HEIGHT))
-#sterowanie wsad oraz prędkość
-UP = pygame.K_w
-DOWN = pygame.K_s
-LEFT = pygame.K_a
-RIGHT = pygame.K_d
-VEL = 10
+
 
 #główne okno gry
 def draw_window(player):
     WIN.fill(WHITE)
-    #wrzucenie modelu postaci do głównego oknaj
+    #wrzucenie modelu postaci do głównego okna
     WIN.blit(CHARACTER_MODEL,(player.x,player.y))
     
     pygame.display.update()
@@ -42,15 +38,8 @@ def main():
             if event.type == pygame.QUIT:
                 run = False
         #sterowanie funkcjonalność
-        keys_pressed=pygame.key.get_pressed()
-        if keys_pressed[UP]:
-            player.y-=VEL
-        if keys_pressed[DOWN]:
-            player.y+=VEL
-        if keys_pressed[LEFT]:
-            player.x-=VEL
-        if keys_pressed[RIGHT]:
-            player.x+=VEL
+        controls(pygame.key.get_pressed(),player)
+
             
         draw_window(player)
     pygame.quit()
