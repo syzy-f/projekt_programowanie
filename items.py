@@ -1,16 +1,17 @@
 import pygame, os, random
-from main import HEIGHT
+from main import HEIGHT, WIDTH
+
 #klasy
 class Item(pygame.sprite.Sprite):
     #podstawowe właściwości itemów
-    def __init__(self):
+    def item_attributes(self):
         pygame.sprite.Sprite.__init__(self)
-        self.width = 30
-        self.height = 30
-        self.velocity = 5
-        self.position_x = random.randint(0,1600)
+        self.width = self.width
+        self.height = self.height
+        self.velocity = VEL
+        self.position_x = random.randint(0+0.5*self.width,WIDTH-0.5*self.width)
         self.position_y = -self.height
-        self.image = pygame.transform.scale(pygame.image.load(os.path.join('assets','square.webp')),(self.width,self.height))
+        self.image = pygame.transform.scale(self.image,(self.width,self.height))
         self.rect = self.image.get_rect()
         self.rect.center = (self.position_x, self.position_y)
     #ruch itemów
@@ -21,18 +22,20 @@ class Item(pygame.sprite.Sprite):
         if self.rect.y > HEIGHT:
             self.kill()
             
-class Car(Item):
+class Hotdog(Item):
     #podstawowe właściwości itemów
     def __init__(self):
-        pygame.sprite.Sprite.__init__(self)
-        self.width = 100
-        self.height = 300
-        self.velocity = 5
-        self.position_x = random.randint(0+self.width,1600-self.width)
-        self.position_y = -self.height
-        self.image = pygame.transform.scale(pygame.image.load(os.path.join('assets','car.jpg')),(self.width,self.height))
-        self.rect = self.image.get_rect()
-        self.rect.center = (self.position_x, self.position_y)
+        self.scale = 0.05
+        self.width = self.scale*WIDTH
+        self.height = self.scale*HEIGHT
+        self.image = pygame.image.load(os.path.join('assets','hotdog.png'))
+        
+class Caffee(Item):
+    #podstawowe właściwości itemów
+    def __init__(self):
+        self.width = 0.05*WIDTH
+        self.height = 0.07*HEIGHT
+        self.image = pygame.image.load(os.path.join('assets','caffee.png'))
 
 
         
@@ -50,6 +53,9 @@ def draw_sprites(WIN):
 
 #zmienne
 all_sprites = pygame.sprite.Group()
+global VEL
+#zmienna VEL będzie pobierana z klasy określającej prędkość poruszania się przeszkód
+VEL = 10
 
 
 

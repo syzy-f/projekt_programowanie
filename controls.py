@@ -5,7 +5,8 @@ def controls(keys_pressed,player):
     DOWN = pygame.K_s
     LEFT = pygame.K_a
     RIGHT = pygame.K_d
-    VEL = 10
+    global VEL
+    VEL = 100
     if keys_pressed[UP]:
         player.y-=VEL
     if keys_pressed[DOWN]:

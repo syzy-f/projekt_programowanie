@@ -59,7 +59,9 @@ def main():
                 for element in all_sprites:
                     element.item_move()
             if event.type == item_spawn:
-                all_sprites.add(Car())
+                X = Caffee()
+                X.item_attributes()
+                all_sprites.add(X)
         #sterowanie funkcjonalność
         controls(pygame.key.get_pressed(),player)
         draw_window(player)
