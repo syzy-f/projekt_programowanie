@@ -36,9 +36,7 @@ def draw_window(player):
     WIN.blit(CHARACTER_MODEL,(player.x,player.y))
         
 #event z itemami
-item_move = pygame.USEREVENT + 1
-pygame.time.set_timer(item_move,20)
-item_spawn = pygame.USEREVENT + 2
+item_spawn = pygame.USEREVENT
 pygame.time.set_timer(item_spawn,1000)
 
 def refresh():
@@ -55,11 +53,9 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
-            if event.type == item_move:
-                for element in all_sprites:
-                    element.item_move()
+            #even spawnowania itemów
             if event.type == item_spawn:
-                X = Caffee()
+                X = Hotdog()
                 X.item_attributes()
                 all_sprites.add(X)
         #sterowanie funkcjonalność
@@ -68,6 +64,8 @@ def main():
         for element in all_sprites:
             draw_sprites(WIN)
             element.item_kill()
+            element.item_collide(player)
+            element.item_move()
         # Update
         refresh()
     pygame.quit()

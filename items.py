@@ -21,6 +21,10 @@ class Item(pygame.sprite.Sprite):
     def item_kill(self):
         if self.rect.y > HEIGHT:
             self.kill()
+    #znikanie itemów po kolizji z postacią
+    def item_collide(self,player):
+        if pygame.Rect.colliderect(player,self.rect) == True:
+            self.kill()
             
 class Hotdog(Item):
     #podstawowe właściwości itemów
@@ -30,12 +34,13 @@ class Hotdog(Item):
         self.height = self.scale*HEIGHT
         self.image = pygame.image.load(os.path.join('assets','hotdog.png'))
         
-class Caffee(Item):
+class Coffee(Item):
     #podstawowe właściwości itemów
     def __init__(self):
         self.width = 0.05*WIDTH
         self.height = 0.07*HEIGHT
         self.image = pygame.image.load(os.path.join('assets','caffee.png'))
+
 
 
         
