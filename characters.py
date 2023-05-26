@@ -55,7 +55,7 @@ class Hero:
 
 
 
-MONSTER = Hero(x,y)
+MONSTER = Hero(100,400)
 
 
 
@@ -68,14 +68,14 @@ def main():
         for event in pygame.event.get():
             if event.type ==pygame.QUIT:
                 run=False
-        keys.pressed = pygame.key.get_pressed()
+        keys_pressed = pygame.key.get_pressed()
         MONSTER.move(keys_pressed)
 
-    draw.window(monster)
+    draw_window(monster)
     
 
 
     pygame.quit()
 
-#if _name_=="__main__":
+#if __name__=="__main__":
 #    main()
