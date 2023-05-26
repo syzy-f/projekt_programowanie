@@ -22,7 +22,7 @@ VEL = 8
 
 #obrazek bohatera
 MONSTER_WIDTH, MONSTER_HEIGHT = 55, 40
-CUTE_MONSTER_IMAGE= pygame.image.load(os.path.join('Assets','hero1.png')
+CUTE_MONSTER_IMAGE= pygame.image.load(os.path.join('Assets','hero1.png'))
 CUTE_MONSTER = pygame.transform.rotate(pygame.transfom.scale(CUTE_MONSTER_IMAGE,(MONSTER_WIDTH, MONSTER_HEIGHT)), 90)
                                     
 
