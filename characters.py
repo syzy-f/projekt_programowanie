@@ -22,13 +22,13 @@ VEL = 8
 
 #obrazek bohatera
 MONSTER_WIDTH, MONSTER_HEIGHT = 55, 40
-CUTE_MONSTER_IMAGE= pygame.image.load(os.path.join('Assests','hero1.png')
+CUTE_MONSTER_IMAGE= pygame.image.load(os.path.join('Assets','hero1.png')
 CUTE_MONSTER = pygame.transform.rotate(pygame.transfom.scale(CUTE_MONSTER_IMAGE,(MONSTER_WIDTH, MONSTER_HEIGHT)), 90)
                                     
 
 def draw_window():
     window.fill(white)
-    pygame.draw.rect(window, black (x, y, width, height))
+    pygame.draw.rect(window, black (monster.x, monster.y, MONSTER.WIDTH, MONSTER.HEIGHT))
     window.blit(CUTE_MONSTER_IMAGE,(monster.x, monster.y))        #draw the surface on the screen
     pygame.display.update()
 
@@ -58,13 +58,13 @@ MONSTER = Hero(x,y)
 
 
 def main():
-    monster = pygame.Rect(100, 300, MONSTER_WIDTH, MONSTER_HEIGHT)
+    monster = Hero(100,300)                                  
     clock=pygame.time.Clock()
     run = True
     while run:
         clock.tick(FPS)     #stała szybkość na różnych komputerach
         for event in pygame.event.get():
-            if event.type ==pygame.quit:
+            if event.type ==pygame.QUIT:
                 run=False
         keys.pressed = pygame.key.get_pressed()
         MONSTER.move(keys_pressed)
