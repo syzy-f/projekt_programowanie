@@ -1,1 +1,1 @@
-#klasa generująca mape do zrobienia
+print ("to będzie mapa")
