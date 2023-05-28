@@ -96,20 +96,7 @@ if __name__ == "__main__":
 last_obstacle_spawn_time = pygame.time.get_ticks()
 
 while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-        elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
-                player.move_left()  #przesunięcie gracza w lewo po naciśnięciu strzałki w lewo
-            elif event.key == pygame.K_RIGHT:
-                player.move_right()  #przesunięcie gracza w prawo po naciśnięciu strzałki w prawo
-
-    all_sprites.update()  #aktualizacj obiektów
-
-    if pygame.sprite.spritecollide(player, obstacles, False):
-        running = False  #dead
-
+#tu trzeba dodać sterowanie!!!!!!!!!!!!!
     lanes_with_obstacles = set()
     for obstacle in obstacles:
         lanes_with_obstacles.add(obstacle.lane)
