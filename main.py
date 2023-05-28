@@ -91,7 +91,7 @@ def main():
 if __name__ == "__main__":
     main()
 
- background_s = 0
+background_s = 0 #żeby tło się przewijało
 
 last_obstacle_spawn_time = pygame.time.get_ticks()
 
