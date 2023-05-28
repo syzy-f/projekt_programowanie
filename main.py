@@ -12,9 +12,9 @@ pygame.init()
 SCREEN_WIDTH = 1600  #WAŻNE
 SCREEN_HEIGHT = 900  #WAŻNE
 FPS = 60 
-OBSTACLE_SPEED = 20  # Prędkość poruszania się przeszkód, edycja wpływa na poziom trudności gry!!!!!!!
+OBSTACLE_SPEED = 20  #prędkość poruszania się przeszkód oraz tła, edycja wpływa na poziom trudności gry, imo poziomy trudności powinny być 10-20-30 !!!!!!!!!!!!!!!!!!!!
 LANE_WIDTH = (SCREEN_WIDTH - 4 * 390) // 3  # Szerokość toru
-TOR_OFFSET = (SCREEN_WIDTH - (3 * LANE_WIDTH + 2 * 105)) // 2  #żeby tramwaje nie zjeżdżały
+TOR_OFFSET = (SCREEN_WIDTH - (3 * LANE_WIDTH + 2 * 105)) // 2  #kombinacje z pikselami żeby tramwaje nie zjeżdżały, to chyba nie jest zbytnio po bożemu ale ważne że działa
 MIN_DISTANCE_BETWEEN_OBSTACLES = 400  #minimalna odległość między przeszkodami, edycja wpływa na poziom trudności gry!!!!!!!
 
 WIN = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT)) 
@@ -111,7 +111,7 @@ while running:
             else:
                 last_obstacle = max(obstacles, key=lambda o: o.rect.y)
                 if last_obstacle.rect.y > MIN_DISTANCE_BETWEEN_OBSTACLES:
-                    if pygame.time.get_ticks() - last_obstacle_spawn_time > 750: #zmiana wpłynie na poziom trudności gry!!!!!!!!! 
+                    if pygame.time.get_ticks() - last_obstacle_spawn_time > 800: #zmiana wpłynie na poziom trudności gry, imo poniżej 800 gra może być niemożliwa do ukończenia!!!!!!!!!!!!!!!!!!!!
                         obstacle_type = random.choice([Obstacle, Obstacle2])
                         obstacle = obstacle_type(lane)  # Wybór losowej przeszkody i ustawienie jej w torze
                         obstacles.add(obstacle)
