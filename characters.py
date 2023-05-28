@@ -65,7 +65,7 @@ class Hero:
     def draw(self, surface):
         # Narysowanie bohatera na podanej powierzchni
         surface.blit(HERO_IMAGE, (self.x, self.y))
-        surface.blit(rectangle_surface, (self.x, self.y))
+       
 
 # Utworzenie instancji potwora
 hero = Hero(100, 100, speed=5)
