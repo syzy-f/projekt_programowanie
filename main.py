@@ -18,7 +18,7 @@ TOR_OFFSET = (SCREEN_WIDTH - (3 * LANE_WIDTH + 2 * 105)) // 2  #żeby tramwaje n
 MIN_DISTANCE_BETWEEN_OBSTACLES = 400  #minimalna odległość między przeszkodami, edycja wpływa na poziom trudności gry!!!!!!!
 
 WIN = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT)) 
-pygame.display.set_caption("Bimba Surfers") #kolor okienka
+pygame.display.set_caption("Bimba Surfers")
 WHITE = (255,255,255)
 
 clock = pygame.time.Clock()  # Utworzenie obiektu Clock - używany do kontrolowania prędkości odświeżania ekranu
