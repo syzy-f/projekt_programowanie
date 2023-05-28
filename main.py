@@ -11,19 +11,20 @@ pygame.init()
 SCREEN_WIDTH = 1600  #WAŻNE
 SCREEN_HEIGHT = 900  #WAŻNE
 FPS = 60 
-OBSTACLE_SPEED = 20  # Prędkość poruszania się przeszkód
+OBSTACLE_SPEED = 20  # Prędkość poruszania się przeszkód, edycja wpływa na poziom trudności gry!!!!!!!
 LANE_WIDTH = (SCREEN_WIDTH - 4 * 390) // 3  # Szerokość toru
 TOR_OFFSET = (SCREEN_WIDTH - (3 * LANE_WIDTH + 2 * 105)) // 2  #żeby tramwaje nie zjeżdżały
 MIN_DISTANCE_BETWEEN_OBSTACLES = 400  #minimalna odległość między przeszkodami, edycja wpływa na poziom trudności gry!!!!!!!
 
-WHITE = (255, 255, 255)  # Kolor biały w formacie RGB
-
-WIN = pygame.display.set_mode((WIDTH,HEIGHT))
-#tytuł okienka 
-pygame.display.set_caption("Bimba Surfers")
-#kolor okienka
+WIN = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT)) 
+pygame.display.set_caption("Bimba Surfers") #kolor okienka
 WHITE = (255,255,255)
 
+clock = pygame.time.Clock()  # Utworzenie obiektu Clock - używany do kontrolowania prędkości odświeżania ekranu
+
+background = pygame.image.load('Assets', "background.png")  #tło
+obstacle_image = pygame.image.load('Assets', "obstacle.png")  #tramwaje
+obstacle2_image = pygame.image.load('Assets', "obstacle2.png")  #kibole
 
 # to można do postaci przenieść
 #import modelu postaci
