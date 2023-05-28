@@ -20,7 +20,7 @@ FPS = 60
 
 # to można do postaci przenieść
 #import modelu postaci
-CHARACTER_MODEL_IMAGE = pygame.image.load(os.path.join('assets','juki.webp'))
+CHARACTER_MODEL_IMAGE = pygame.image.load(os.path.join('assets','mario.png'))
 #zmiana wielkości modelu postaci
 CHARACTER_MODEL_WIDTH = 200
 CHARACTER_MODEL_HEIGHT = 200
