@@ -1,6 +1,6 @@
 #kosmetyka
-obstacle_image = pygame.image.load("obstacle.png")  # Wczytanie obrazu pierwszej przeszkody (tramwaj)
-obstacle2_image = pygame.image.load("obstacle2.png")  # Wczytanie obrazu drugiej przeszkody (kibole)
+obstacle_image = pygame.image.load('Assets',"obstacle.png")  # Wczytanie obrazu pierwszej przeszkody (tramwaj)
+obstacle2_image = pygame.image.load('Assets',"obstacle2.png")  # Wczytanie obrazu drugiej przeszkody (kibole)
 
 obstacle_image = pygame.transform.scale(obstacle_image, (100, 300))  # Skalowanie obrazu przeszkody
 obstacle2_image = pygame.transform.scale(obstacle2_image, (100, 100))  # Skalowanie obrazu drugiej przeszkody
