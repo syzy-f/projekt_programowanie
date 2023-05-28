@@ -1,3 +1,4 @@
+
 import pygame
 import os  # operating system
 
@@ -28,7 +29,7 @@ pygame.display.set_caption("BIMBA SURFERS GAME")
 
 
 # Załadowanie obrazka potwora i skalowanie
-HERO_IMAGE = pygame.image.load(os.path.join('Assets', 'hero1.png'))  #os po to żeby auomatycznie działało na windowsie czy macu
+HERO_IMAGE = pygame.image.load(os.path.join('Assets', 'hero.png'))  #os po to żeby auomatycznie działało na windowsie czy macu
 HERO_IMAGE = pygame.transform.scale(HERO_IMAGE, (HERO_SIZE, HERO_SIZE))
 
 
@@ -45,30 +46,29 @@ class Hero:
         self.speed = 0
         self.life_points = 100
 
-    def move(self, keys_pressed):
+    def move(self, delta_x, delta_y):
 
-        def move(self, delta_x, delta_y):
+         # Aktualizacja pozycji bohatera
+        self.x += delta_x
+        self.y += delta_y
 
-            # Aktualizacja pozycji bohatera
-            self.x += delta_x
-            self.y += delta_y
+        # Ograniczenie bohatera do granic okna
+        if self.x < 0:
+            self.x = 0
+        elif self.x > WINDOW_WIDTH - HERO_SIZE:
+            self.x = WINDOW_WIDTH - HERO_SIZE
+        if self.y < 0:
+            self.y = 0
+        elif self.y > WINDOW_HEIGHT - HERO_SIZE:
+            self.y = WINDOW_HEIGHT - HERO_SIZE
 
-            # Ograniczenie bohatera do granic okna
-            if self.x < 0:
-                self.x = 0
-            elif self.x > WINDOW_WIDTH - HERO_SIZE:
-                self.x = WINDOW_WIDTH - HERO_SIZE
-            if self.y < 0:
-                self.y = 0
-            elif self.y > WINDOW_HEIGHT - HERO_SIZE:
-                self.y = WINDOW_HEIGHT - HERO_SIZE
+    def draw(self, surface):
+        # Narysowanie bohatera na podanej powierzchni
+        surface.blit(HERO_IMAGE, (self.x, self.y))
+        surface.blit(rectangle_surface, (self.x, self.y))
 
-        def draw(self, surface):
-            # Narysowanie bohatera na podanej powierzchni
-            surface.blit(HERO_IMAGE, (self.x, self.y))
-            surface.blit(rectangle_surface, (self.x, self.y))
-
-
+# Utworzenie instancji potwora
+hero = Hero(100, 100, speed=5)
 
 # Główna pętla gry
 running = True
@@ -77,42 +77,35 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-            # Główna pętla gry
-            running = True
-            while running:
-                # Obsługa zdarzeń
-                for event in pygame.event.get():
-                    if event.type == pygame.QUIT:
-                        running = False
 
-                # Sterowanie bohaterem
-                keys = pygame.key.get_pressed()
-                delta_x = 0
-                delta_y = 0
-                if keys[pygame.K_LEFT]:
-                    delta_x -= hero.speed
-                if keys[pygame.K_RIGHT]:
-                    delta_x += hero.speed
-                if keys[pygame.K_UP]:
-                    delta_y -= hero.speed
-                if keys[pygame.K_DOWN]:
-                    delta_y += hero.speed
-                if keys[pygame.K_ESCAPE]:
-                    running = False
+    # Sterowanie bohaterem
+    keys = pygame.key.get_pressed()
+    delta_x = 0
+    delta_y = 0
+    if keys[pygame.K_LEFT]:
+        delta_x -= hero.speed
+    if keys[pygame.K_RIGHT]:
+        delta_x += hero.speed
+    if keys[pygame.K_UP]:
+        delta_y -= hero.speed
+    if keys[pygame.K_DOWN]:
+        delta_y += hero.speed
+    if keys[pygame.K_ESCAPE]:
+        running = False
 
-                # Poruszanie potworem
-                hero.move(delta_x, delta_y)
+    # Poruszanie potworem
+    hero.move(delta_x, delta_y)
 
-                # Wyczyszczenie ekranu
-                window.fill(BACKGROUND_COLOR)
+    # Wyczyszczenie ekranu
+    window.fill(BACKGROUND_COLOR)
 
-                # Rysowanie bohatera
-                hero.draw(window)
+    # Rysowanie bohatera
+    hero.draw(window)
 
-                # Aktualizacja ekranu
-                pygame.display.flip()
+    # Aktualizacja ekranu
+    pygame.display.flip()
 
-                clock.tick(FPS)
+    clock.tick(FPS)
 
 # Zamknięcie Pygame
 pygame.quit()
