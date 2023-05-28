@@ -23,7 +23,7 @@ WHITE = (255,255,255)
 
 clock = pygame.time.Clock()  # Utworzenie obiektu Clock - używany do kontrolowania prędkości odświeżania ekranu
 
-#wczytanie obrazów (brakuje postaci 50x50!!!!!!!!!!)
+#wczytanie obrazów (brakuje postaci 50x50, ale oczywiście może mieć też inne wymiary, tylko trzeba je zmienić poniżej)
 background = pygame.image.load('Assets', "background.png")  #tło
 obstacle_image = pygame.image.load('Assets', "obstacle.png")  #tramwaje
 obstacle2_image = pygame.image.load('Assets', "obstacle2.png")  #kibole
