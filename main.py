@@ -95,8 +95,9 @@ if __name__ == "__main__":
 
 last_obstacle_spawn_time = pygame.time.get_ticks()
 
+#rozwiązanie raczej doraźne na potrzeby rozwoju projektu
 while running:
-#tu trzeba dodać sterowanie!!!!!!!!!!!!!
+#tu powinno być sterowanie
     lanes_with_obstacles = set()
     for obstacle in obstacles:
         lanes_with_obstacles.add(obstacle.lane)
