@@ -30,6 +30,7 @@ class Obstacle(pygame.sprite.Sprite):
             self.kill()  # Usunięcie przeszkody, gdy opuści obszar ekranu
             
 #dodałem też drugą przeszkodę dla urozmaicenia gry, będą się różniły wymiarami. Przeszkoda 1 przy rozdzielczości 1600x900 ma wymiary 300x100, a przeszkoda 2 100x100. 
+#adnotacja dla mnie - ograniczyć liczbę kibiców Lecha Poznań, bo to gra o tramwajach
 
 class Obstacle2(pygame.sprite.Sprite): 
     def __init__(self, lane):
