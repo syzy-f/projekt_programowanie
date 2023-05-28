@@ -22,9 +22,15 @@ WHITE = (255,255,255)
 
 clock = pygame.time.Clock()  # Utworzenie obiektu Clock - używany do kontrolowania prędkości odświeżania ekranu
 
+#wczytanie obrazów (brakuje postaci 50x50!!!!!!!!!!)
 background = pygame.image.load('Assets', "background.png")  #tło
 obstacle_image = pygame.image.load('Assets', "obstacle.png")  #tramwaje
 obstacle2_image = pygame.image.load('Assets', "obstacle2.png")  #kibole
+
+#skalowanie
+player_images = [pygame.transform.scale(image, (50, 50)) for image in player_images]
+obstacle_image = pygame.transform.scale(obstacle_image, (100, 300))  
+obstacle2_image = pygame.transform.scale(obstacle2_image, (100, 100)) 
 
 # to można do postaci przenieść
 #import modelu postaci
