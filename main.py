@@ -33,6 +33,10 @@ player_images = [pygame.transform.scale(image, (50, 50)) for image in player_ima
 obstacle_image = pygame.transform.scale(obstacle_image, (100, 300))  
 obstacle2_image = pygame.transform.scale(obstacle2_image, (100, 100)) 
 
+#ja jestem Sprite a ty jesteś pragnienie
+all_sprites = pygame.sprite.Group() 
+obstacles = pygame.sprite.Group()  
+
 # to można do postaci przenieść
 #import modelu postaci
 CHARACTER_MODEL_IMAGE = pygame.image.load(os.path.join('assets','mario.png'))
