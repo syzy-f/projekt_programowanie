@@ -1,0 +1,14 @@
+# Odpalenie DJa
+pygame.mixer.init()
+pygame.mixer.music.load('Assets', "soundtrack.mp3")  # Załadowanie soundtracku
+
+pygame.mixer.music.play(-1)  # Odtwarzanie soundtracku w pętli
+
+#dodać na sam koniec kodu gry
+pygame.mixer.music.stop()  # Zatrzymanie odtwarzania dźwięku
+
+
+
+
+# Inne efekty dźwiękowe:
+# Hymn Lecha Poznań po pojawieniu się kibiców?
