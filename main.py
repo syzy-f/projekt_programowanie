@@ -126,7 +126,7 @@ while running:
                         all_sprites.add(obstacle)
                         last_obstacle_spawn_time = pygame.time.get_ticks()
 
-    background_y += OBSTACLE_SPEED  #przesunięcie tła w dół
+    background_s += OBSTACLE_SPEED  #przesunięcie tła w dół
     if background_s >= background.get_height():
         background_s = 0  #przewijanie tła, gdy osiągnie dolny kraniec
 
