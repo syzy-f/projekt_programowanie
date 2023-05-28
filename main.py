@@ -101,10 +101,10 @@ while running:
             elif event.key == pygame.K_RIGHT:
                 player.move_right()  #przesunięcie gracza w prawo po naciśnięciu strzałki w prawo
 
-    all_sprites.update()  # Aktualizacja wszystkich obiektów
+    all_sprites.update()  #aktualizacj obiektów
 
     if pygame.sprite.spritecollide(player, obstacles, False):
-        running = False  # Zakończenie gry, jeśli gracz zderzył się z przeszkodą
+        running = False  #dead
 
     lanes_with_obstacles = set()
     for obstacle in obstacles:
