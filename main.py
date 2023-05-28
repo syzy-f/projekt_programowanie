@@ -55,8 +55,7 @@ def main():
                 run = False
             #even spawnowania itemów
             if event.type == item_spawn:
-                X = Hotdog()
-                X.item_attributes()
+                X = Coffee()
                 all_sprites.add(X)
         #sterowanie funkcjonalność
         controls(pygame.key.get_pressed(),player)
