@@ -1,4 +1,4 @@
-background = pygame.image.load("background.png")  # Wczytanie obrazu tła
+background = pygame.image.load('Assets',"background.png")  # Wczytanie obrazu tła
 
 
 
