@@ -1,6 +1,7 @@
 import pygame, os, time
 from controls import controls
 from items import *
+from obstacles import *
 # WAŻNE
 # większość z tego co jest poza główną pętlą warto wrzucić w funkcje/klasy i do osobnym plików, a potem je importować
 # nie chiałbym jednak nikomu wchodzić w jego część zadania, więc śmiało zmieniajcie sobie to co jest do tej pory zrobione
@@ -85,3 +86,55 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+ background_s = 0
+
+last_obstacle_spawn_time = pygame.time.get_ticks()
+
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_LEFT:
+                player.move_left()  #przesunięcie gracza w lewo po naciśnięciu strzałki w lewo
+            elif event.key == pygame.K_RIGHT:
+                player.move_right()  #przesunięcie gracza w prawo po naciśnięciu strzałki w prawo
+
+    all_sprites.update()  # Aktualizacja wszystkich obiektów
+
+    if pygame.sprite.spritecollide(player, obstacles, False):
+        running = False  # Zakończenie gry, jeśli gracz zderzył się z przeszkodą
+
+    lanes_with_obstacles = set()
+    for obstacle in obstacles:
+        lanes_with_obstacles.add(obstacle.lane)
+
+    for lane in [0, 1, 2]:
+        if lane not in lanes_with_obstacles:
+            if len(obstacles) == 0:
+                obstacle = Obstacle(lane)  #utworzenie nowej przeszkody, gdy nie ma innych
+                obstacles.add(obstacle)
+                all_sprites.add(obstacle)
+            else:
+                last_obstacle = max(obstacles, key=lambda o: o.rect.y)
+                if last_obstacle.rect.y > MIN_DISTANCE_BETWEEN_OBSTACLES:
+                    if pygame.time.get_ticks() - last_obstacle_spawn_time > 750: #zmiana wpłynie na poziom trudności gry!!!!!!!!! 
+                        obstacle_type = random.choice([Obstacle, Obstacle2])
+                        obstacle = obstacle_type(lane)  # Wybór losowej przeszkody i ustawienie jej w torze
+                        obstacles.add(obstacle)
+                        all_sprites.add(obstacle)
+                        last_obstacle_spawn_time = pygame.time.get_ticks()
+
+    background_y += OBSTACLE_SPEED  #przesunięcie tła w dół
+    if background_s >= background.get_height():
+        background_s = 0  #przewijanie tła, gdy osiągnie dolny kraniec
+
+    screen.blit(background, (0, background_s - background.get_height()))  #wyświetlanie tła
+    screen.blit(background, (0, background_s))
+    all_sprites.draw(screen)  # Wyświetlanie wszystkich obiektów na ekranie
+
+    pygame.display.flip()  #istotne
+    clock.tick(FPS)  
+
+pygame.quit() 
