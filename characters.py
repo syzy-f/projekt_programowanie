@@ -22,5 +22,5 @@ class Hero:
     def draw(self, surface):
         surface.blit(HERO_IMAGE, (self.x, self.y))
 
-hero = Hero(100, 100, speed=5)
+player = Hero(100, 100, speed=5)
 
