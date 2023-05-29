@@ -9,8 +9,8 @@ from obstacles import *
 
 pygame.init() 
 #stałe
-SCREEN_WIDTH = 1600  #WAŻNE
-SCREEN_HEIGHT = 900  #WAŻNE
+SCREEN_WIDTH = 1600
+SCREEN_HEIGHT = 900  
 FPS = 60 
 OBSTACLE_SPEED = 20  #prędkość poruszania się przeszkód oraz tła, edycja wpływa na poziom trudności gry, imo poziomy trudności powinny być 10-20-30 !!!!!!!!!!!!!!!!!!!!
 LANE_WIDTH = (SCREEN_WIDTH - 4 * 390) // 3  # Szerokość toru
@@ -39,8 +39,8 @@ all_sprites = pygame.sprite.Group()
 obstacles = pygame.sprite.Group()  
 
 # to można do postaci przenieść
-#zmiana wielkości modelu postaci
-CHARACTER_MODEL_WIDTH = 200
+#zmiana wielkości modelu postaci                 
+CHARACTER_MODEL_WIDTH = 200 #imo powinno być 50x50 lub 100x100
 CHARACTER_MODEL_HEIGHT = 200
 HERO_SIZE = (CHARACTER_MODEL_WIDTH, CHARACTER_MODEL_HEIGHT)
 
