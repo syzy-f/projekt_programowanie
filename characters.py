@@ -1,5 +1,5 @@
 import pygame, os
-from main_variables import WIN, WIDTH, HEIGHT
+from main_variables import WIN, WIDTH, HEIGHT, LANE_WIDTH, TOR_OFFSET
 class Hero:
     def __init__(self, speed=30):
         self.speed = speed
