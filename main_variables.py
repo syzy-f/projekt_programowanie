@@ -29,13 +29,3 @@ LANE_WIDTH = (WIDTH - 4 * 390) // 3  # Szerokość pojedynczego pasa ruchu
 TOR_OFFSET = (WIDTH - (3 * LANE_WIDTH + 2 * 105)) // 2  # Przesunięcie toru względem lewej krawędzi. Te 105 to moja zabawa pikselami, może to trzeba będzie usunąć
 MIN_DISTANCE_BETWEEN_OBSTACLES = 500  # Minimalna odległość między przeszkodami. 500 jest chyba optymalne, od 400 i mniej gra może stać się niemożliwa do przejścia. Można tego używać do manipulowania poziomem trudności.
 
-
-    #zmienne postaci
-#grafika postaci
-CHARACTER_MODEL_IMAGE = pygame.image.load(os.path.join('assets','mario.png'))
-#szerokość postaci
-CHARACTER_MODEL_WIDTH = 200
-#wysokość postaci
-CHARACTER_MODEL_HEIGHT = 200
-#dostosowanie grafiki postaci do wymiarów
-CHARACTER_MODEL = pygame.transform.scale(CHARACTER_MODEL_IMAGE,(CHARACTER_MODEL_WIDTH,CHARACTER_MODEL_HEIGHT))
