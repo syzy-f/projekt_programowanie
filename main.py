@@ -36,7 +36,10 @@ def main():
         #spawnienie itemów i przeszkód
         lanes_with_obstacles = set()
         for obstacle in obstacles:
-            lanes_with_obstacles.add(obstacle.lane)
+            if player.rect.colliderect(obstacle.rect):
+                run = False
+                #tutaj można zrobić jakieś GAME OVER albo zapisanie wyniku
+                break
 
         for lane in [0, 1, 2]:
             if lane not in lanes_with_obstacles:
