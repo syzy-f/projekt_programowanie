@@ -17,10 +17,6 @@ class Hero:
         self.right = pygame.K_d
 
     def hero_controls(self,keys_pressed):
-        if keys_pressed[self.up]:
-            self.rect.y-= self.speed
-        if keys_pressed[self.down]:
-            self.rect.y+= self.speed
         if keys_pressed[self.left]:
             self.rect.x-= self.speed
         if keys_pressed[self.right]:
