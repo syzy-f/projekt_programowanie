@@ -23,13 +23,14 @@ WHITE = (255,255,255)
 
 clock = pygame.time.Clock()  # Utworzenie obiektu Clock - używany do kontrolowania prędkości odświeżania ekranu
 
-#wczytanie obrazów (brakuje postaci 50x50, ale oczywiście może mieć też inne wymiary, tylko trzeba je zmienić poniżej)
+#wczytanie obrazów
+HERO_IMAGE = pygame.image.load(os.path.join('assets', 'mario.png'))
 background = pygame.image.load('Assets', "background.png")  #tło
 obstacle_image = pygame.image.load('Assets', "obstacle.png")  #tramwaje
 obstacle2_image = pygame.image.load('Assets', "obstacle2.png")  #kibole
 
 #skalowanie
-player_images = [pygame.transform.scale(image, (50, 50)) for image in player_images]
+HERO_IMAGE = pygame.transform.scale(HERO_IMAGE, (HERO_SIZE, HERO_SIZE))
 obstacle_image = pygame.transform.scale(obstacle_image, (100, 300))  
 obstacle2_image = pygame.transform.scale(obstacle2_image, (100, 100)) 
 
@@ -47,11 +48,6 @@ HERO_SIZE = (CHARACTER_MODEL_WIDTH, CHARACTER_MODEL_HEIGHT)
 # Utwórzenie powierzchni o wymiarach HERO_SIZE i ustawienie przezroczystości (alpha channel)
 rectangle_surface = pygame.Surface((HERO_SIZE, HERO_SIZE), pygame.SRCALPHA)
 pygame.draw.rect(rectangle_surface, (0, 0, 0, 100), (0, 0, HERO_SIZE, HERO_SIZE))
-
-#import modelu postaci
-HERO_IMAGE = pygame.image.load(os.path.join('assets', 'mario.png'))
-HERO_IMAGE = pygame.transform.scale(HERO_IMAGE, (HERO_SIZE, HERO_SIZE))     # Skalowanie obrazka bohatera do rozmiaru określonego przez zmienną HERO_SIZE
-
 
 #główne okno gry
 def draw_window(player):
