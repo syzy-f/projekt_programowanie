@@ -18,9 +18,11 @@ class Hero:
 
     def hero_controls(self, keys_pressed):
         if keys_pressed[self.left]:
-            self.rect.x-= self.speed
+            if self.rect.x > 0.35 * WIDTH: #wartość ograniczenia ruchu w lewo
+                self.rect.x -= self.speed
         if keys_pressed[self.right]:
-            self.rect.x+= self.speed
+            if self.rect.x < 0.58 * WIDTH: #wartość ograniczenia ruchu w prawo
+                self.rect.x += self.speed
         
     def hero_draw(self):
         WIN.blit(self.image,(self.rect.x,self.rect.y))
