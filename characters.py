@@ -1,21 +1,8 @@
-import pygame
-import os
 
-# Stałe gry
-WINDOW_WIDTH = 800
-WINDOW_HEIGHT = 600
-BORDER_WIDTH = 200
-BORDER_HEIGHT = 400
 HERO_SIZE = 128
-FPS = 60
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 BACKGROUND_COLOR = (244, 220, 181)
-
-pygame.init()
-clock = pygame.time.Clock()
-window = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
-pygame.display.set_caption("BIMBA SURFERS GAME")
 
 HERO_IMAGE = pygame.image.load(os.path.join('Assets', 'hero.png'))
 HERO_IMAGE = pygame.transform.scale(HERO_IMAGE, (HERO_SIZE, HERO_SIZE))
