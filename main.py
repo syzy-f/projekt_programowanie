@@ -53,12 +53,6 @@ HERO_IMAGE = pygame.image.load(os.path.join('assets', 'mario.png'))
 HERO_IMAGE = pygame.transform.scale(HERO_IMAGE, (HERO_SIZE, HERO_SIZE))     # Skalowanie obrazka bohatera do rozmiaru określonego przez zmienną HERO_SIZE
 
 
-
-
-
-
-
-
 #główne okno gry
 def draw_window(player):
     WIN.fill(WHITE)
