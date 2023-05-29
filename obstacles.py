@@ -1,33 +1,42 @@
-#klasy przeszkód
-class Obstacle(pygame.sprite.Sprite):
-    def __init__(self, lane):
-        super().__init__()
-        self.image = obstacle_image  # Załadowanie obrazu przeszkody
-        self.rect = self.image.get_rect()  # Utworzenie prostokątnego obszaru ograniczającego przeszkodę
-        self.lane = lane  
-        self.rect.centerx = TOR_OFFSET + LANE_WIDTH // 2 + self.lane * (LANE_WIDTH + 97)  # Ustalenie pozycji poziomej przeszkody, to "97" to dodałem, żeby dobrze ulokować obiekty na tle względem rozdzielczości 1600x900, możliwe że potem trzeba będzie to zmienić
-        self.rect.y = -random.randrange(200, 600)  # Ustalenie początkowej pozycji pionowej przeszkody
+import pygame, os, random
+from main_variables import *
+from items import Item
 
-    def update(self):
-        self.rect.y += OBSTACLE_SPEED  # Przesunięcie przeszkody w dół
 
-        if self.rect.top > SCREEN_HEIGHT:
-            self.kill()  # Usunięcie przeszkody, gdy opuści obszar ekranu
             
-#dodałem też drugą przeszkodę dla urozmaicenia gry, będą się różniły wymiarami. Przeszkoda 1 przy rozdzielczości 1600x900 ma wymiary 300x100, a przeszkoda 2 100x100. 
-#adnotacja dla mnie - ograniczyć liczbę kibiców Lecha Poznań, bo to gra o tramwajach
-
-class Obstacle2(pygame.sprite.Sprite): 
+class Train(Item):
     def __init__(self, lane):
+        #nadpisanie niektórych właściwości na potrzeby klasy train
+        self.lane = lane
+        self.width = 0.08*WIDTH
+        self.height = 0.6*HEIGHT
+        self.image = pygame.image.load(os.path.join('assets/obstacles','train.png'))
         super().__init__()
-        self.image = obstacle2_image  
-        self.rect = self.image.get_rect()  
-        self.lane = lane  
-        self.rect.centerx = TOR_OFFSET + LANE_WIDTH // 2 + self.lane * (LANE_WIDTH + 97)  
-        self.rect.y = -random.randrange(200, 600)  
 
-    def update(self):
-        self.rect.y += OBSTACLE_SPEED  
+        
+class Fans(Item):
+    #podstawowe właściwości itemów
+    def __init__(self, lane):
+        #nadpisanie niektórych właściwości na potrzeby klasy fans
+        self.lane = lane
+        self.width = 0.10*WIDTH
+        self.height = 0.10*HEIGHT
+        self.image = pygame.image.load(os.path.join('assets/obstacles','fans.png'))
+        super().__init__()
 
-        if self.rect.top > SCREEN_HEIGHT:
-            self.kill()  
+
+
+        
+        
+#eventy
+            # if event.type == item_move:
+            #     for element in item_list:
+            #         element.item_move()
+            # if event.type == item_spawn:
+            #     item_list.append(Item())
+            
+
+
+
+
+    
