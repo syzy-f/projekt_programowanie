@@ -8,8 +8,8 @@ class Train(Item):
     def __init__(self, lane):
         #nadpisanie niektórych właściwości na potrzeby klasy train
         self.lane = lane
-        self.width = 0.08*WIDTH
-        self.height = 0.6*HEIGHT
+        self.width = 0.062*WIDTH
+        self.height = 0.38*HEIGHT
         self.image = pygame.image.load(os.path.join('assets/obstacles','train.png'))
         super().__init__()
 
@@ -19,8 +19,8 @@ class Fans(Item):
     def __init__(self, lane):
         #nadpisanie niektórych właściwości na potrzeby klasy fans
         self.lane = lane
-        self.width = 0.10*WIDTH
-        self.height = 0.10*HEIGHT
+        self.width = 0.07*WIDTH
+        self.height = 0.11*HEIGHT
         self.image = pygame.image.load(os.path.join('assets/obstacles','fans.png'))
         super().__init__()
 
