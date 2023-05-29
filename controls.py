@@ -1,17 +1,26 @@
 #sterowanie wsad oraz prędkość prototyp, do zaimplementowania ściąganie sterowanie z ustawień oraz prędkości z klasy postaci
 import pygame
 def controls(keys_pressed,player):
-    UP = pygame.K_w
-    DOWN = pygame.K_s
-    LEFT = pygame.K_a
-    RIGHT = pygame.K_d
-    global VEL
-    VEL = 20
-    if keys_pressed[UP]:
-        player.y-=VEL
-    if keys_pressed[DOWN]:
-        player.y+=VEL
-    if keys_pressed[LEFT]:
-        player.x-=VEL
-    if keys_pressed[RIGHT]:
-        player.x+=VEL
+    keys = pygame.key.get_pressed()
+    delta_x = 0
+    delta_y = 0
+    if keys[pygame.K_LEFT]:
+        delta_x -= hero.speed
+    if keys[pygame.K_RIGHT]:
+        delta_x += hero.speed
+    if keys[pygame.K_UP]:
+        delta_y -= hero.speed
+    if keys[pygame.K_DOWN]:
+        delta_y += hero.speed
+    if keys[pygame.K_ESCAPE]:
+        running = False
+
+        
+# player = Hero(100, 100, speed=5)
+
+    hero.move(delta_x, delta_y)
+    window.fill(BACKGROUND_COLOR)
+    hero.draw(window)
+
+pygame.quit()
+
