@@ -38,12 +38,23 @@ all_sprites = pygame.sprite.Group()
 obstacles = pygame.sprite.Group()  
 
 # to można do postaci przenieść
-#import modelu postaci
-CHARACTER_MODEL_IMAGE = pygame.image.load(os.path.join('assets','mario.png'))
 #zmiana wielkości modelu postaci
 CHARACTER_MODEL_WIDTH = 200
 CHARACTER_MODEL_HEIGHT = 200
-CHARACTER_MODEL = pygame.transform.scale(CHARACTER_MODEL_IMAGE,(CHARACTER_MODEL_WIDTH,CHARACTER_MODEL_HEIGHT))
+HERO_SIZE = (CHARACTER_MODEL_WIDTH, CHARACTER_MODEL_HEIGHT)
+
+
+# Utwórzenie powierzchni o wymiarach HERO_SIZE i ustawienie przezroczystości (alpha channel)
+rectangle_surface = pygame.Surface((HERO_SIZE, HERO_SIZE), pygame.SRCALPHA)
+pygame.draw.rect(rectangle_surface, (0, 0, 0, 100), (0, 0, HERO_SIZE, HERO_SIZE))
+
+#import modelu postaci
+HERO_IMAGE = pygame.image.load(os.path.join('assets', 'mario.png'))
+HERO_IMAGE = pygame.transform.scale(HERO_IMAGE, (HERO_SIZE, HERO_SIZE))     # Skalowanie obrazka bohatera do rozmiaru określonego przez zmienną HERO_SIZE
+
+
+
+
 
 
 
@@ -96,8 +107,28 @@ background_s = 0 #żeby tło się przewijało
 last_obstacle_spawn_time = pygame.time.get_ticks()
 
 #rozwiązanie raczej doraźne na potrzeby rozwoju projektu
+running = True
 while running:
-#tu powinno być sterowanie
+#sterowanie
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    keys = pygame.key.get_pressed()
+    delta_x = 0
+    delta_y = 0
+    if keys[pygame.K_LEFT]:
+        delta_x -= hero.speed
+    if keys[pygame.K_RIGHT]:
+        delta_x += hero.speed
+    if keys[pygame.K_UP]:
+        delta_y -= hero.speed
+    if keys[pygame.K_DOWN]:
+        delta_y += hero.speed
+    if keys[pygame.K_ESCAPE]:
+        running = False
+
+
     lanes_with_obstacles = set()
     for obstacle in obstacles:
         lanes_with_obstacles.add(obstacle.lane)
@@ -125,7 +156,8 @@ while running:
     screen.blit(background, (0, background_s - background.get_height()))  #wyświetlanie tła
     screen.blit(background, (0, background_s))
     all_sprites.draw(screen)  # Wyświetlanie wszystkich obiektów na ekranie
-
+    
+    
     pygame.display.flip()  #istotne
     clock.tick(FPS)  
 
