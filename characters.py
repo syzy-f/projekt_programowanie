@@ -15,15 +15,12 @@ class Hero:
         self.down = pygame.K_s
         self.left = pygame.K_a
         self.right = pygame.K_d
-        self.current_lane = 1
 
     def hero_controls(self, keys_pressed):
-        if keys_pressed[self.left] and self.current_lane != 0:
-            self.rect.x -= LANE_WIDTH + 97
-            self.current_lane -= 1
-        if keys_pressed[self.right] and self.current_lane != 2:
-            self.rect.x += LANE_WIDTH + 97
-            self.current_lane += 1
+        if keys_pressed[self.left]:
+            self.rect.x-= self.speed
+        if keys_pressed[self.right]:
+            self.rect.x+= self.speed
         
     def hero_draw(self):
         WIN.blit(self.image,(self.rect.x,self.rect.y))
