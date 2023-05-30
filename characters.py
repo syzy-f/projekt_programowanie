@@ -9,7 +9,7 @@ class Hero:
         self.image = pygame.image.load(os.path.join('assets/characters','hero.png'))
         self.image = pygame.transform.scale(self.image,(self.width,self.height))
         self.rect = self.image.get_rect()
-        self.rect.center = (0.5 * WIDTH, 0.8 * HEIGHT)
+        self.rect.center = (0.5 * WIDTH, 0.9 * HEIGHT)
         #przciski w zmiennych, aby możabyło zmieniać
         self.up = pygame.K_w
         self.down = pygame.K_s
