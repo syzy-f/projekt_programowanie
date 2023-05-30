@@ -1,5 +1,5 @@
 import pygame, os
-from main_variables import WIN, WIDTH, HEIGHT
+from main_variables import WIN, WIDTH, HEIGHT, LANE_WIDTH, TOR_OFFSET
 class Hero:
     def __init__(self, speed=30):
         self.speed = speed
@@ -16,15 +16,13 @@ class Hero:
         self.left = pygame.K_a
         self.right = pygame.K_d
 
-    def hero_controls(self,keys_pressed):
-        if keys_pressed[self.up]:
-            self.rect.y-= self.speed
-        if keys_pressed[self.down]:
-            self.rect.y+= self.speed
+    def hero_controls(self, keys_pressed):
         if keys_pressed[self.left]:
-            self.rect.x-= self.speed
+            if self.rect.x > 0.35 * WIDTH: #wartość ograniczenia ruchu w lewo
+                self.rect.x -= self.speed
         if keys_pressed[self.right]:
-            self.rect.x+= self.speed
+            if self.rect.x < 0.58 * WIDTH: #wartość ograniczenia ruchu w prawo
+                self.rect.x += self.speed
         
     def hero_draw(self):
         WIN.blit(self.image,(self.rect.x,self.rect.y))

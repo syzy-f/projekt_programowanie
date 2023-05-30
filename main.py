@@ -3,20 +3,17 @@ from items import *
 from obstacles import Train, Fans
 from main_variables import *
 from characters import Hero
+from menu import menu_start, menu_end, menu_stop
 # WAŻNE
 # większość z tego co jest poza główną pętlą warto wrzucić w funkcje/klasy i do osobnym plików, a potem je importować
 # nie chiałbym jednak nikomu wchodzić w jego część zadania, więc śmiało zmieniajcie sobie to co jest do tej pory zrobione
 # to tylko taki prototyp, aby zobrazować działanie pygame
 
+#inicjowanie gry
+pygame.init()
 
 #tytuł okienka 
 pygame.display.set_caption("Bimba Surfers")
-
-
-
-
-
-        
 
 current_time = 0
 
@@ -33,10 +30,16 @@ def main():
             #kończenie programu poprzez X'a
             if event.type == pygame.QUIT:
                 run = False
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    menu_stop()
         #spawnienie itemów i przeszkód
         lanes_with_obstacles = set()
         for obstacle in obstacles:
-            lanes_with_obstacles.add(obstacle.lane)
+            if player.rect.colliderect(obstacle.rect):
+                run = False
+                #tutaj można zrobić jakieś GAME OVER albo zapisanie wyniku
+                break
 
         for lane in [0, 1, 2]:
             if lane not in lanes_with_obstacles:
@@ -75,7 +78,6 @@ def main():
         pygame.display.update()
         clock.tick(FPS)
         print(clock.get_fps())
-    pygame.quit()
 
 if __name__ == "__main__":
     main()
