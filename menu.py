@@ -69,7 +69,7 @@ def menu_stop():
         pygame.display.update()
 
 
-def menu_end(start, stop):
+def menu_end(start, stop, start_zatrzymania, stop_zatrzymania):
     wyswietlacz = pygame.display.set_mode((1600, 900))
 
     theend = pygame.image.load(os.path.join ('assets/menu', "theend.png"))
@@ -83,7 +83,8 @@ def menu_end(start, stop):
     running = True
     while running:
         wyswietlacz.blit(theend, (0,0))
-        czas_trwania = stop - start
+        czas_zatrzymania = stop_zatrzymania - start_zatrzymania
+        czas_trwania = stop - start - czas_zatrzymania
         zaokraglony_czas_trawania = round(czas_trwania, 2)
         napis = czcionka.render(str(zaokraglony_czas_trawania), True, kolor_tekstu)
         wyswietlacz.blit(napis, (510, 400))
