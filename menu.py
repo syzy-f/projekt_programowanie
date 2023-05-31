@@ -59,8 +59,6 @@ def menu_stop():
         wyswietlacz.blit(background_menu, (0,0))
         if resume_przycisk.narysuj(wyswietlacz):
             zastopowac_gre = False
-        elif restart_przycisk.narysuj(wyswietlacz):
-            zastopowac_gre = False
         elif quit_przycisk.narysuj(wyswietlacz):
             sys.exit()
 
