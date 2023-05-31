@@ -95,7 +95,7 @@ def menu_end(start, stop):
         if restart_przycisk.narysuj(wyswietlacz):
             return False
         elif quit_przycisk.narysuj(wyswietlacz):
-            return False
+            sys.exit()
         
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
