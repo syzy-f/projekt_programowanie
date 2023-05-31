@@ -50,22 +50,19 @@ def menu_stop():
 
     resume_obrazek = pygame.image.load(os.path.join ('assets/menu', "resume.png"))
     quit_obrazek = pygame.image.load(os.path.join ('assets/menu', "quit.png"))
-    restart_obrazek = pygame.image.load(os.path.join ('assets/menu', "restart.png"))
 
-    quit_przycisk = Przyciski(900, 750, quit_obrazek, 0.12)
-    resume_przycisk = Przyciski(650, 350, resume_obrazek, 0.19)
-    restart_przycisk = Przyciski(650, 550, restart_obrazek, 0.19)
-
+    quit_przycisk = Przyciski(600, 600, quit_obrazek, 0.22)
+    resume_przycisk = Przyciski(600, 350, resume_obrazek, 0.22)
+    
     zastopowac_gre = True
     while zastopowac_gre:
         wyswietlacz.blit(background_menu, (0,0))
-        if zastopowac_gre:
-            if resume_przycisk.narysuj(wyswietlacz):
-                zastopowac_gre = False
-            elif restart_przycisk.narysuj(wyswietlacz):
-                zastopowac_gre = False
-            elif quit_przycisk.narysuj(wyswietlacz):
-                sys.exit()
+        if resume_przycisk.narysuj(wyswietlacz):
+            zastopowac_gre = False
+        elif restart_przycisk.narysuj(wyswietlacz):
+            zastopowac_gre = False
+        elif quit_przycisk.narysuj(wyswietlacz):
+            sys.exit()
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
