@@ -1,29 +1,31 @@
-import pygame, os
-    #zmienne gry
-#fpsy
+import os
+import pygame
+
+# FPS'y
 FPS = 60
-#szybkość ekranu/itemów/wszystkiego
+# Szybkość ekranu/itemów/wszystkiego
 VEL = 30
-#grupa wszystkich obiektów
-all_sprites = pygame.sprite.Group()
-#grupa wszystkich przeszkód
-obstacles = pygame.sprite.Group()
-#kontrolowanie odświeżania ekranu
+
+# Grupa wszystkich obiektów na torach
+track_obstacles = pygame.sprite.Group()
+# Kontrolowanie odświeżania ekranu
 clock = pygame.time.Clock()
 
-    #zmienne okna
 
-#szerokość okna
+# Zmienne okna
+# Szerokość okna
 WIDTH = 1600
-#wysokość okna
+# Wysokość okna
 HEIGHT = 900
-#okno
-background = pygame.image.load(os.path.join('assets/background','background.png'))
+# Okno
+background = pygame.image.load(os.path.join('../../../Desktop/project_juki-main/assets/background', 'background.png'))
 WIN = pygame.display.set_mode((WIDTH,HEIGHT))
 
-#zmienne lini
-
+# Zmienne lini
 LANE_WIDTH = (WIDTH * 0.025) // 3  # Szerokość pojedynczego pasa ruchu
 TOR_OFFSET = (WIDTH - (3 * LANE_WIDTH + 2 * 105)) // 2  # Przesunięcie toru względem lewej krawędzi. Te 105 to moja zabawa pikselami, może to trzeba będzie usunąć
 MIN_DISTANCE_BETWEEN_OBSTACLES = 500  # Minimalna odległość między przeszkodami. 500 jest chyba optymalne, od 400 i mniej gra może stać się niemożliwa do przejścia. Można tego używać do manipulowania poziomem trudności.
 
+# Kolory
+RED = (255, 0, 0)
+GRAY = (128, 128, 128)

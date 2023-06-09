@@ -28,8 +28,8 @@ def wyswietlanie_tekstu(tekst, czcionka, kolor_tekstu, x, y):
 
 def menu_start():
     wyswietlacz = pygame.display.set_mode((1600, 900))
-    clicktoplay = pygame.image.load(os.path.join ('assets/menu', "clicktoplay.png"))
-    play_obrazek = pygame.image.load(os.path.join ('assets/menu', "play.png"))
+    clicktoplay = pygame.image.load(os.path.join ('../../../Desktop/project_juki-main/assets/menu', "clicktoplay.png"))
+    play_obrazek = pygame.image.load(os.path.join ('../../../Desktop/project_juki-main/assets/menu', "play.png"))
     play_przycisk = Przyciski(660, 650, play_obrazek, 0.19)
     running = True
     while running:
@@ -46,10 +46,10 @@ def menu_start():
 def menu_stop():
     wyswietlacz = pygame.display.set_mode((1600, 900))
 
-    background_menu = pygame.image.load(os.path.join ('assets/menu', "menu_background.png"))
+    background_menu = pygame.image.load(os.path.join ('../../../Desktop/project_juki-main/assets/menu', "menu_background.png"))
 
-    resume_obrazek = pygame.image.load(os.path.join ('assets/menu', "resume.png"))
-    quit_obrazek = pygame.image.load(os.path.join ('assets/menu', "quit.png"))
+    resume_obrazek = pygame.image.load(os.path.join ('../../../Desktop/project_juki-main/assets/menu', "resume.png"))
+    quit_obrazek = pygame.image.load(os.path.join ('../../../Desktop/project_juki-main/assets/menu', "quit.png"))
 
     quit_przycisk = Przyciski(600, 600, quit_obrazek, 0.22)
     resume_przycisk = Przyciski(600, 350, resume_obrazek, 0.22)
@@ -72,10 +72,10 @@ def menu_stop():
 def menu_end(start, stop, start_zatrzymania, stop_zatrzymania):
     wyswietlacz = pygame.display.set_mode((1600, 900))
 
-    theend = pygame.image.load(os.path.join ('assets/menu', "theend.png"))
+    theend = pygame.image.load(os.path.join ('../../../Desktop/project_juki-main/assets/menu', "theend.png"))
 
-    quit_obrazek = pygame.image.load(os.path.join ('assets/menu', "quit.png"))
-    restart_obrazek = pygame.image.load(os.path.join ('assets/menu', "restart.png"))
+    quit_obrazek = pygame.image.load(os.path.join ('../../../Desktop/project_juki-main/assets/menu', "quit.png"))
+    restart_obrazek = pygame.image.load(os.path.join ('../../../Desktop/project_juki-main/assets/menu', "restart.png"))
 
     quit_przycisk = Przyciski(1200, 500, quit_obrazek, 0.15)
     restart_przycisk = Przyciski(150, 500, restart_obrazek, 0.15)

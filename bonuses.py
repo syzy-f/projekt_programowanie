@@ -6,8 +6,8 @@ from characters import Hero
 from main_variables import WIDTH, HEIGHT, TOR_OFFSET, LANE_WIDTH
 
 
-class Obstacle(pygame.sprite.Sprite):
-    """Klasa ogólna przeszkody"""
+class Bonus(pygame.sprite.Sprite):
+    """Klasa ogólna bonusów"""
     def __init__(self, path, lane=1, width=50, height=50, velocity=30):
         pygame.sprite.Sprite.__init__(self)
 
@@ -42,25 +42,23 @@ class Obstacle(pygame.sprite.Sprite):
         if self.rect.top > HEIGHT:
             self.kill()
 
-    def item_collide(self, player: Hero):
-        # Metoda collide_mask aktualizuje pozycję maski podczas wywoływania
-        # I sprawdza czy nie doszło do kolizji dla wywoływanych obiektów
+    def item_collide(self, player):
         if pygame.sprite.collide_mask(player, self):
-            # Ta przeszkoda zawsze odbiera życie
-            player.decrease_life()
+            player.increase_life()
             self.kill()
 
     def draw(self, win):
         win.blit(self.image, (self.rect.x, self.rect.y))
 
 
-class Train(Obstacle):
-    """Klasa Train"""
-    def __init__(self, lane):
-        path = os.path.join('../../../Desktop/project_juki-main/assets', 'obstacles', 'train.png')
-        width = 0.062 * WIDTH
-        height = 0.38 * HEIGHT
+class Hotdog(Bonus):
+    """Klasa Hotdog."""
 
+    def __init__(self, lane):
+        path = os.path.join('../../../Desktop/project_juki-main/assets', 'bonuses', 'hotdog.png')
+        scale = 0.05
+        width = scale * WIDTH
+        height = scale * HEIGHT
         super().__init__(path=path, width=width, height=height)
 
         # Utworzenie maski do kolizji
@@ -68,21 +66,33 @@ class Train(Obstacle):
         # Ustalenie położenia na wybranym torze i przesunięcie obiektu
         self.set_lane(lane)
 
-        print(f"Train pozycja startowa: {self.position_x, self.position_y} - tor {self.lane})")
+        print(f"Hotdog pozycja startowa: {self.position_x, self.position_y} - tor {self.lane})")
+
+    def item_collide(self, player: Hero):
+        if pygame.sprite.collide_mask(player, self):
+            print("Got one live")
+            player.increase_life()
+            self.kill()
 
 
-class Fans(Obstacle):
-    """Klasa Fans"""
+class Coffee(Bonus):
+    """Klasa Coffee."""
+
     def __init__(self, lane):
-        path = os.path.join('../../../Desktop/project_juki-main/assets', 'obstacles', 'fans.png')
-        width = int(0.07 * WIDTH)
-        height = int(0.11 * HEIGHT)
-        super().__init__(path=path, width=width, height=height)
+        path = os.path.join('../../../Desktop/project_juki-main/assets', 'bonuses', 'coffee.png')
+        width = 0.05 * WIDTH
+        height = 0.07 * HEIGHT
+        super().__init__(path, width=width, height=height)
 
-        # Utworzenie maski do kolizji
         self.mask = pygame.mask.from_surface(self.image)
+
         # Ustalenie położenia na wybranym torze i przesunięcie obiektu
         self.set_lane(lane)
 
-        print(f"Fans pozycja startowa: {int(self.position_x), self.position_y} - tor {self.lane})")
+        print(f"Coffee pozycja startowa: {self.position_x, self.position_y} - tor {self.lane})")
 
+    def item_collide(self, player: Hero):
+        if pygame.sprite.collide_mask(player, self):
+            print("Got one live")
+            player.increase_life()
+            self.kill()

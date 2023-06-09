@@ -1,10 +1,12 @@
-import pygame, os, time, random
-from items import *
+import pygame
+import os
+import time
+import random
+from bonuses import Coffee, Hotdog
 from obstacles import Train, Fans
 from main_variables import *
 from characters import Hero
 from menu import menu_stop, menu_end, menu_start
-
 
 # WAŻNE
 # większość z tego co jest poza główną pętlą warto wrzucić w funkcje/klasy i do osobnym plików, a potem je importować
@@ -12,22 +14,22 @@ from menu import menu_stop, menu_end, menu_start
 # to tylko taki prototyp, aby zobrazować działanie pygame
 
 pygame.init()
-#tytuł okienka 
+# Tytuł okienka
 pygame.display.set_caption("Bimba Surfers")
 
 
 current_time = 0
 
-#główna pętla gry
+
+# Główna pętla gry
 def main():
     background_y = 0
     last_obstacle_spawn_time = pygame.time.get_ticks()
 
-
-    #stworzenie obiektu klasy Hero - nasza postać
+    # Stworzenie obiektu klasy Hero - nasza postać
     player = Hero()
 
-    #rozpoczęcie gry
+    # Rozpoczęcie gry
     # starting = True
     running = True
     while running:
@@ -37,8 +39,9 @@ def main():
         stop_zatrzymania = 0
         run = True
         while run:
+
             for event in pygame.event.get():
-                #kończenie programu poprzez X'a
+                # Kończenie programu poprzez X'a
                 if event.type == pygame.QUIT:
                     run = False
                 if event.type == pygame.KEYDOWN:
@@ -46,56 +49,66 @@ def main():
                         start_zatrzymania = time.time()
                         menu_stop()
                         stop_zatrzymania = time.time()
-                # if event.type == pygame.KEYDOWN:
-                #     if event.key == pygame.K_SPACE:
-                #         run = False
-            #spawnienie itemów i przeszkód
+
+            # Spawnienie bonusów i przeszkód
             lanes_with_obstacles = set()
-            for obstacle in obstacles:
-                if player.rect.colliderect(obstacle.rect):
-                    run = False
-                    #tutaj można zrobić jakieś GAME OVER albo zapisanie wyniku
 
             for lane in [0, 1, 2]:
                 if lane not in lanes_with_obstacles:
-                    if len(obstacles) == 0:
-                        obstacle = Fans(lane)  #utworzenie przeszkody, gdy nie ma innych przeszkód
-                        obstacles.add(obstacle)
-                        all_sprites.add(obstacle)
+                    if len(track_obstacles) == 0:
+                        track_obstacle = Fans(lane)  # Utworzenie przeszkody, gdy nie ma innych przeszkód
+                        track_obstacles.add(track_obstacle)
                     else:
-                        last_obstacle = max(obstacles, key=lambda o: o.rect.y)
+                        last_obstacle = max(track_obstacles, key=lambda o: o.rect.y)
                         if last_obstacle.rect.y > MIN_DISTANCE_BETWEEN_OBSTACLES:
-                            if pygame.time.get_ticks() - last_obstacle_spawn_time > 800: #poniżej 800 jest dla koxów
-                                obstacle_type = random.choice([Train, Fans,Hotdog,Coffee])
-                                obstacle = obstacle_type(lane)  #wybór losowej przeszkody i wrzucenie jej do loswego lejnu
-                                obstacles.add(obstacle)
-                                all_sprites.add(obstacle)
+                            if pygame.time.get_ticks() - last_obstacle_spawn_time > 800: # Poniżej 800 jest dla koxów
+                                # Losowy wybór przeszkody/bonusu
+                                track_obstacle_type = random.choice([Train, Fans, Hotdog, Coffee])
+                                track_obstacle = track_obstacle_type(lane)
+                                # Wybór losowej przeszkody i wrzucenie jej do losowego toru
+                                track_obstacles.add(track_obstacle)
                                 last_obstacle_spawn_time = pygame.time.get_ticks()
                                 
-                    
-            #funkcja pobierająca inputy z klawiatury odnośnie poruszania się
+            # Funkcja pobierająca inputy z klawiatury odnośnie poruszania się
             player.hero_controls(pygame.key.get_pressed())
-            #rysowanie tła
+
+            # Jeżeli gracz starci wszsytkie życia - zakończ grę
+            if player.lives < 1:
+                run = False
+            else:
+                print(player.lives)
+
+            # Rysowanie tła
             background_y += VEL
             if background_y >= background.get_height():
-                background_y = 0  #tło idzie w dół
-            WIN.blit(background, (0, background_y - background.get_height()))  #tło
+                # Tło idzie w dół
+                background_y = 0
+
+            # Tło
+            WIN.blit(background, (0, background_y - background.get_height()))
             WIN.blit(background, (0, background_y))
             player.hero_draw()
-            
-            for element in all_sprites:
-                element.item_kill()
-                element.item_collide(player.rect)
-                element.item_move()
-            all_sprites.draw(WIN)
-            #odświeżanie ekranu
+            player.update_animation()
+
+            # Aktualizacja połoażenia wszystkich obiektów
+            track_obstacles.update()
+            track_obstacles.draw(WIN)
+
+            # Sprawdzenie kolizji z obiektami na torach
+            for element in track_obstacles:
+                element.item_collide(player)
+
+            # Rysuj życia gracza po narysowaniu wszystkiego (zawsze na wierzchu)
+            player.show_lives()
+
+            # Odświeżanie ekranu
             pygame.display.flip()
             pygame.display.update()
             clock.tick(FPS)
-            print(clock.get_fps())
 
         stop = time.time()
         menu_end(start, stop, start_zatrzymania, stop_zatrzymania)
+
 
 if __name__ == "__main__":
     main()
