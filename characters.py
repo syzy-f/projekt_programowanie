@@ -27,10 +27,10 @@ class Hero(pygame.sprite.Sprite):
         self.animation_counter = 0
 
         # Wczytanie obrazków postaci
-        image_1 = pygame.image.load(os.path.join('../../../Desktop/project_juki-main/assets', 'characters', 'hero_1.png')).convert_alpha()
-        image_2 = pygame.image.load(os.path.join('../../../Desktop/project_juki-main/assets', 'characters', 'hero_2.png')).convert_alpha()
+        image_1 = pygame.image.load(os.path.join('assets', 'characters', 'hero_1.png')).convert_alpha()
+        image_2 = pygame.image.load(os.path.join('assets', 'characters', 'hero_2.png')).convert_alpha()
         # Dodatkowe klatki (gdyby były)
-        # image_3 = pygame.image.load(os.path.join('assets', 'characters', 'hero_3.png')).convert_alpha()
+        image_3 = pygame.image.load(os.path.join('assets', 'characters', 'hero_3.png')).convert_alpha()
 
         # Skalowanie obrazków postaci
         image_1 = pygame.transform.scale(image_1, (self.hero_width, self.hero_height))
@@ -66,8 +66,8 @@ class Hero(pygame.sprite.Sprite):
         self.lives = 3
 
         # przciski w zmiennych, aby możabyło zmieniać
-        self.left = pygame.K_a
-        self.right = pygame.K_d
+        self.left = pygame.K_LEFT
+        self.right = pygame.K_RIGHT
 
         # Miganie gracza po zderzeniu
         self.is_flickering = False

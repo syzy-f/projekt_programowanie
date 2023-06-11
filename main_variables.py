@@ -14,9 +14,9 @@ clock = pygame.time.Clock()
 
 # Zmienne okna
 # Szerokość okna
-WIDTH = 1600
+WIDTH = 1500
 # Wysokość okna
-HEIGHT = 900
+HEIGHT = 800
 # Okno
 background = pygame.image.load(os.path.join('../../../Desktop/project_juki-main/assets/background', 'background.png'))
 WIN = pygame.display.set_mode((WIDTH,HEIGHT))
