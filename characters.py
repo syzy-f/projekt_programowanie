@@ -29,16 +29,17 @@ class Hero(pygame.sprite.Sprite):
         # Wczytanie obrazków postaci
         image_1 = pygame.image.load(os.path.join('assets', 'characters', 'hero_1.png')).convert_alpha()
         image_2 = pygame.image.load(os.path.join('assets', 'characters', 'hero_2.png')).convert_alpha()
-        # Dodatkowe klatki (gdyby były)
         image_3 = pygame.image.load(os.path.join('assets', 'characters', 'hero_3.png')).convert_alpha()
 
         # Skalowanie obrazków postaci
         image_1 = pygame.transform.scale(image_1, (self.hero_width, self.hero_height))
         image_2 = pygame.transform.scale(image_2, (self.hero_width, self.hero_height))
+        image_3 = pygame.transform.scale(image_3, (self.hero_width, self.hero_height))
 
         # Dodanie obrazków do animacji
         self.animation_frames.append(image_1)
         self.animation_frames.append(image_2)
+        self.animation_frames.append(image_3)
 
         # Ustawienie pierwszego obrazka jako początku animacji
         self.image = self.animation_frames[self.current_frame]
@@ -50,9 +51,9 @@ class Hero(pygame.sprite.Sprite):
         self.heart_height = 30
 
         # Obrazki i przeskalowanie
-        self.hear_image = pygame.image.load(os.path.join('../../../Desktop/project_juki-main/assets', 'characters', 'heart.png')).convert_alpha()
+        self.hear_image = pygame.image.load(os.path.join('assets', 'characters', 'heart.png')).convert_alpha()
         self.hear_image = pygame.transform.scale(self.hear_image, (self.heart_width, self.heart_height))
-        self.broken_heart_image = pygame.image.load(os.path.join('../../../Desktop/project_juki-main/assets', 'characters', 'broken_heart.png')).convert_alpha()
+        self.broken_heart_image = pygame.image.load(os.path.join('assets', 'characters', 'broken_heart.png')).convert_alpha()
         self.broken_heart_image = pygame.transform.scale(self.broken_heart_image, (self.heart_width, self.heart_height))
 
         # Utworzenie prostokąta gracza
