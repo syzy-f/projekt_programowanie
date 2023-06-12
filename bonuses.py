@@ -1,12 +1,13 @@
 import os
 import pygame
 import random
-from items import Item
+
+from characters import Hero
 from main_variables import WIDTH, HEIGHT, TOR_OFFSET, LANE_WIDTH
 
 
-class Obstacle(pygame.sprite.Sprite):
-    """Klasa ogólna przeszkody"""
+class Bonus(pygame.sprite.Sprite):
+    """Klasa ogólna bonusów"""
     def __init__(self, path, lane=1, width=50, height=50, velocity=30):
         pygame.sprite.Sprite.__init__(self)
 
@@ -42,43 +43,56 @@ class Obstacle(pygame.sprite.Sprite):
             self.kill()
 
     def item_collide(self, player):
-        # Metoda collide_mask aktualizuje pozycję maski podczas wywoływania
-        # I sprawdza czy nie doszło do kolizji dla wywoływanych obiektów
         if pygame.sprite.collide_mask(player, self):
-            # Ta przeszkoda zawsze odbiera życie
-            player.decrease_life()
+            player.increase_life()
             self.kill()
 
     def draw(self, win):
         win.blit(self.image, (self.rect.x, self.rect.y))
 
 
-class Train(Item):
-    """Klasa Train"""
+class Hotdog(Bonus):
+    """Klasa Hotdog."""
+
     def __init__(self, lane):
-        #nadpisanie niektórych właściwości na potrzeby klasy train
-        self.lane = lane
-        self.width = 0.062*WIDTH
-        self.height = 0.38*HEIGHT
-        self.image = pygame.image.load(os.path.join('assets/obstacles','train.png'))
-        super().__init__()
-    def train_collide(self,player):
+        path = os.path.join('assets/bonuses', 'hotdog.png')
+        scale = 0.05
+        width = scale * WIDTH
+        height = scale * HEIGHT
+        super().__init__(path=path, width=width, height=height)
+
+        # Utworzenie maski do kolizji
+        self.mask = pygame.mask.from_surface(self.image)
+        # Ustalenie położenia na wybranym torze i przesunięcie obiektu
+        self.set_lane(lane)
+
+        print(f"Hotdog pozycja startowa: {self.position_x, self.position_y} - tor {self.lane})")
+
+    def item_collide(self, player: Hero):
         if pygame.sprite.collide_mask(player, self):
-            player.lives -= 1
-            player.decrease_life()
+            print("Got one live")
+            player.increase_life()
+            self.kill()
 
 
-class Fans(Item):
-    """Klasa Fans"""
+class Coffee(Bonus):
+    """Klasa Coffee."""
+
     def __init__(self, lane):
-        #nadpisanie niektórych właściwości na potrzeby klasy fans
-        self.lane = lane
-        self.width = 0.07*WIDTH
-        self.height = 0.11*HEIGHT
-        self.image = pygame.image.load(os.path.join('assets/obstacles','fans.png'))
-        super().__init__()
-    def fans_collide(self,player):
-        if pygame.sprite.collide_mask(player, self):
-            player.lives -= 1
-            player.decrease_life()
+        path = os.path.join('assets/bonuses', 'coffee.png')
+        width = 0.05 * WIDTH
+        height = 0.07 * HEIGHT
+        super().__init__(path, width=width, height=height)
 
+        self.mask = pygame.mask.from_surface(self.image)
+
+        # Ustalenie położenia na wybranym torze i przesunięcie obiektu
+        self.set_lane(lane)
+
+        print(f"Coffee pozycja startowa: {self.position_x, self.position_y} - tor {self.lane})")
+
+    def item_collide(self, player: Hero):
+        if pygame.sprite.collide_mask(player, self):
+            print("Got one live")
+            player.increase_life()
+            self.kill()

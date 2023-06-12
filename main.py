@@ -102,7 +102,7 @@ def main():
                 if element.__class__.__name__ == "Coffee":
                     element.coffee_collide(player)
                 if element.__class__.__name__ == "Fans":
-                    element.fans_collide(player)
+                    element.fans_collide(player) 
                 if element.__class__.__name__ == "Train":
                     element.train_collide(player)
                 element.item_collide(player)

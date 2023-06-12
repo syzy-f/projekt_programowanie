@@ -75,24 +75,11 @@ class Hero(pygame.sprite.Sprite):
         self.flicker_duration = 45  # ok 1.5 sekundy
         self.flicker_counter = 0
 
-    # def decrease_life(self):
-    #     print("Lost one life")
-    #     self.lives -= 1
-    #     if self.lives == 0:
-    #         print("Game over!")
-    #     else:
-    #         # Resetowanie pozycji po zderzeniu?
-    #         # self.rect.centerx = WIDTH // 2
-    #         # self.rect.bottom = HEIGHT - 10
-
-    #         # Aktualny czas mrugania zerujemy
-    #         self.flicker_counter = 0
-    #         # Gracz od teraz będzie mrugał
-    #         self.is_flickering = True
-
-    # def increase_life(self):
-    #     if self.lives < 3:
-    #         self.lives += 1
+    def decrease_life(self):
+        # Aktualny czas mrugania zerujemy
+        self.flicker_counter = 0
+        # Gracz od teraz będzie mrugał
+        self.is_flickering = True
 
     def hero_controls(self, keys_pressed):
         if keys_pressed[self.left] and self.rect.x > 0.340 * WIDTH:
