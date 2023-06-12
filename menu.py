@@ -73,6 +73,7 @@ def menu_end(start, stop, start_zatrzymania, stop_zatrzymania):
     wyswietlacz = pygame.display.set_mode((1600, 900))
 
     theend = pygame.image.load(os.path.join ('assets/menu', "theend.png"))
+
     quit_obrazek = pygame.image.load(os.path.join ('assets/menu', "quit.png"))
     restart_obrazek = pygame.image.load(os.path.join ('assets/menu', "restart.png"))
 

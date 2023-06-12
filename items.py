@@ -16,21 +16,35 @@ class Item(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(self.image,(self.width,self.height))
         self.rect = self.image.get_rect()
         self.rect.center = (self.position_x, self.position_y)
-    #ruch itemów
-    def item_move(self):
+        self.mask = pygame.mask.from_surface(self.image)
+    #nowe funkcje
+    
+    def move_rect(self):
+            self.rect.center = (self.position_x, self.position_y)
+
+    def set_lane(self, lane):
+        self.lane = lane
+        self.position_x = TOR_OFFSET + LANE_WIDTH // 2 + self.lane * (LANE_WIDTH + 97)
+        self.position_y = -self.height
+        # Po przeliczeniu położenia na torze przesuń obiekt w jego miejsce
+        self.move_rect()
+
+    def update(self):
         self.rect.y += self.velocity
-    #znikanie itemów po wyleceniu za mape
-    def item_kill(self):
-        if self.rect.y > HEIGHT:
+        if self.rect.top > HEIGHT:
             self.kill()
-    #znikanie itemów po kolizji z postacią, do dodania jeszcze dźwięk
-    def item_collide(self,player):
-        if pygame.Rect.colliderect(player,self.rect) == True:
+
+    def item_collide(self, player):
+        # Metoda collide_mask aktualizuje pozycję maski podczas wywoływania
+        # I sprawdza czy nie doszło do kolizji dla wywoływanych obiektów
+        if pygame.sprite.collide_mask(player, self):
             self.kill()
-    #odbierania życia po kolizji z przeszkodą
-    def obstacle_collide(self,player,damage=1):
-        if pygame.Rect.colliderect(player.rect,self.rect) == True:
-            player.life_points -= damage
+
+    def draw(self, win):
+        win.blit(self.image, (self.rect.x, self.rect.y))
+    #koniec nowych funkcji
+    
+
 
             
 class Hotdog(Item):
@@ -42,9 +56,11 @@ class Hotdog(Item):
         self.height = self.scale*HEIGHT
         self.image = pygame.image.load(os.path.join('assets/items','hotdog.png'))
         super().__init__()
-    def hotdog_collide(self, player):
-        if pygame.Rect.colliderect(player.rect,self.rect) == True:
-            player.life_points+=1
+    def hotdog_collide(self,player):
+        if pygame.sprite.collide_mask(player, self):
+            if player.lives < 3:
+                player.lives += 1
+
         
 class Coffee(Item):
     #podstawowe właściwości itemów
@@ -55,27 +71,11 @@ class Coffee(Item):
         self.height = 0.07*HEIGHT
         self.image = pygame.image.load(os.path.join('assets/items','caffee.png'))
         super().__init__()
-    def coffee_collide(self, player):
-        if pygame.Rect.colliderect(player.rect,self.rect) == True:
-            player.speed+=10
+    def coffee_collide(self,player):
+        if pygame.sprite.collide_mask(player, self):
+            if player.lives < 3:
+                player.lives += 1
 
-
-
-        
-        
-#eventy
-            # if event.type == item_move:
-            #     for element in item_list:
-            #         element.item_move()
-            # if event.type == item_spawn:
-            #     item_list.append(Item())
-            
-#funkcja wrzucająca na ekran wszystkiei itemy
-def draw_sprites(WIN):
-    all_sprites.update()
-    all_sprites.draw(WIN)
-
-#zmienne
 
 
 
