@@ -27,7 +27,10 @@ class Item(pygame.sprite.Sprite):
     def item_collide(self,player):
         if pygame.Rect.colliderect(player,self.rect) == True:
             self.kill()
-
+    #odbierania życia po kolizji z przeszkodą
+    def obstacle_collide(self,player,damage=1):
+        if pygame.Rect.colliderect(player.rect,self.rect) == True:
+            player.life_points -= damage
 
             
 class Hotdog(Item):
@@ -39,7 +42,9 @@ class Hotdog(Item):
         self.height = self.scale*HEIGHT
         self.image = pygame.image.load(os.path.join('assets/items','hotdog.png'))
         super().__init__()
-
+    def hotdog_collide(self, player):
+        if pygame.Rect.colliderect(player.rect,self.rect) == True:
+            player.life_points+=1
         
 class Coffee(Item):
     #podstawowe właściwości itemów
@@ -50,6 +55,9 @@ class Coffee(Item):
         self.height = 0.07*HEIGHT
         self.image = pygame.image.load(os.path.join('assets/items','caffee.png'))
         super().__init__()
+    def coffee_collide(self, player):
+        if pygame.Rect.colliderect(player.rect,self.rect) == True:
+            player.speed+=10
 
 
 

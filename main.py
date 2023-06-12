@@ -46,14 +46,14 @@ def main():
                         start_zatrzymania = time.time()
                         menu_stop()
                         stop_zatrzymania = time.time()
-                # if event.type == pygame.KEYDOWN:
-                #     if event.key == pygame.K_SPACE:
-                #         run = False
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_SPACE:
+                        run = False
             #spawnienie itemów i przeszkód
             lanes_with_obstacles = set()
-            for obstacle in obstacles:
-                if player.rect.colliderect(obstacle.rect):
-                    run = False
+            # for obstacle in obstacles:
+            #     if player.rect.colliderect(obstacle.rect):
+            #         run = False
                     #tutaj można zrobić jakieś GAME OVER albo zapisanie wyniku
 
             for lane in [0, 1, 2]:
@@ -84,15 +84,27 @@ def main():
             player.hero_draw()
             
             for element in all_sprites:
+                #funkcja tyko na hotdogu się odpala
+                if element.__class__.__name__ == "Hotdog":
+                    element.hotdog_collide(player)
+                if element.__class__.__name__ == "Coffee":
+                    element.coffee_collide(player)
+                if element.__class__.__name__ == "Fans":
+                    element.obstacle_collide(player)
+                if element.__class__.__name__ == "Train":
+                    element.obstacle_collide(player)
                 element.item_kill()
                 element.item_collide(player.rect)
                 element.item_move()
+                #działa
+            if player.life_points <=0:
+                run = False
             all_sprites.draw(WIN)
             #odświeżanie ekranu
             pygame.display.flip()
             pygame.display.update()
             clock.tick(FPS)
-            print(clock.get_fps())
+            #print(clock.get_fps())
 
         stop = time.time()
         menu_end(start, stop, start_zatrzymania, stop_zatrzymania)

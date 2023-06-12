@@ -3,7 +3,7 @@ from main_variables import WIN, WIDTH, HEIGHT, LANE_WIDTH, TOR_OFFSET
 class Hero:
     def __init__(self, speed=30):
         self.speed = speed
-        self.life_points = 100
+        self.life_points = 3
         self.width = 100
         self.height = 100
         self.image = pygame.image.load(os.path.join('assets/characters','hero.png'))
