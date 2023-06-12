@@ -118,9 +118,9 @@ class Hero(pygame.sprite.Sprite):
 
     def show_lives(self):
         for i in range(self.lives):
-            WIN.blit(self.hear_image, (15 + i * self.heart_width, 15, 20, 20))
+            WIN.blit(self.hear_image, (35 + i * self.heart_width, 15, self.heart_height, self.heart_width))
         for i in range(3 - self.lives):
-            WIN.blit(self.broken_heart_image, (15 + (self.lives + i) * self.heart_width, 15, 20, 20))
+            WIN.blit(self.broken_heart_image, (35 + (self.lives + i) * self.heart_width, 15, self.heart_height, self.heart_width))
 
     def update(self, keys_pressed):
         self.update_animation()
