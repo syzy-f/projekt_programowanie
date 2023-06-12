@@ -87,7 +87,7 @@ def menu_end(start, stop, start_zatrzymania, stop_zatrzymania):
         czas_trwania = stop - start - czas_zatrzymania
         zaokraglony_czas_trawania = round(czas_trwania, 2)
         napis = czcionka.render(str(zaokraglony_czas_trawania), True, kolor_tekstu)
-        wyswietlacz.blit(napis, (510, 400))
+        wyswietlacz.blit(napis, (550, 420))
         if restart_przycisk.narysuj(wyswietlacz):
             return False
         elif quit_przycisk.narysuj(wyswietlacz):
@@ -102,5 +102,5 @@ def menu_end(start, stop, start_zatrzymania, stop_zatrzymania):
 pygame.init()
 
 pygame.display.set_caption("Menu")
-czcionka = pygame.font.SysFont("arialblack", 250)
+czcionka = pygame.font.SysFont("arialblack", 210)
 kolor_tekstu = (255, 255, 255)
