@@ -1,2 +1,6 @@
-# project_juki
- Projekt na zaliczenie z programowania u Jukiewicz
+# project_programowanie
+Uczestnicy:
+Tymon Ruszkiewicz
+Mateusz Nosarzewski
+Werka Sztukiewicz
+Weronika Murawka
