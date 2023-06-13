@@ -1,6 +1,6 @@
 # project_programowanie
 Uczestnicy:
-Tymon Ruszkiewicz
-Mateusz Nosarzewski
-Werka Sztukiewicz
-Weronika Murawka
+Tymon Ruszkiewicz (syzyf)
+Mateusz Nosarzewski (niepokorna-madzia.82)
+Werka Sztukiewicz 
+Weronika Murawka (wermur)
