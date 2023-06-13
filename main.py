@@ -66,7 +66,7 @@ def main():
                     else:
                         last_obstacle = max(track_obstacles, key=lambda o: o.rect.y)
                         if last_obstacle.rect.y > MIN_DISTANCE_BETWEEN_OBSTACLES:
-                            if pygame.time.get_ticks() - last_obstacle_spawn_time > 500: # Poniżej 800 jest dla koxów
+                            if pygame.time.get_ticks() - last_obstacle_spawn_time > 440: # Poniżej 800 jest dla koxów
                                 # Wybór losowego toru
                                 random_lane = random.choice([0, 1, 2])
                                 if random_lane not in lanes_with_obstacles:
