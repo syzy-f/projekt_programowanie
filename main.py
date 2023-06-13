@@ -7,6 +7,8 @@ from obstacles import Train, Fans
 from main_variables import *
 from characters import Hero
 from menu import menu_stop, menu_end, menu_start
+from soundtrack import play_soundtrack
+
 
 # WAŻNE
 # większość z tego co jest poza główną pętlą warto wrzucić w funkcje/klasy i do osobnym plików, a potem je importować
@@ -31,7 +33,8 @@ def main():
 
     # Rozpoczęcie gry
     # starting = True
-    running = True
+    running = True    
+    play_soundtrack() #soundtrack
     while running:
         player = Hero()
         menu_start()
