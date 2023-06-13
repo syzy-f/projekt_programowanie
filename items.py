@@ -58,8 +58,7 @@ class Hotdog(Item):
         super().__init__()
     def hotdog_collide(self,player):
         if pygame.sprite.collide_mask(player, self):
-            if player.lives < 3:
-                player.lives += 1
+            player.increase_life()
 
         
 class Coffee(Item):

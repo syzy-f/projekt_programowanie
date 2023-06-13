@@ -75,31 +75,31 @@ class Hero(pygame.sprite.Sprite):
         self.flicker_duration = 45  # ok 1.5 sekundy
         self.flicker_counter = 0
 
-    # def decrease_life(self):
-    #     print("Lost one life")
-    #     self.lives -= 1
-    #     if self.lives == 0:
-    #         print("Game over!")
-    #     else:
-    #         # Resetowanie pozycji po zderzeniu?
-    #         # self.rect.centerx = WIDTH // 2
-    #         # self.rect.bottom = HEIGHT - 10
+    def decrease_life(self):
+        print("Lost one life")
+        self.lives -= 1
+        if self.lives == 0:
+            print("Game over!")
+        else:
+            # Resetowanie pozycji po zderzeniu?
+            # self.rect.centerx = WIDTH // 2
+            # self.rect.bottom = HEIGHT - 10
 
-    #         # Aktualny czas mrugania zerujemy
-    #         self.flicker_counter = 0
-    #         # Gracz od teraz będzie mrugał
-    #         self.is_flickering = True
+            # Aktualny czas mrugania zerujemy
+            self.flicker_counter = 0
+            # Gracz od teraz będzie mrugał
+            self.is_flickering = True
 
-    # def increase_life(self):
-    #     if self.lives < 3:
-    #         self.lives += 1
+    def increase_life(self):
+        if self.lives < 3:
+            self.lives += 1
 
     def hero_controls(self, keys_pressed):
-        if keys_pressed[self.left] and self.rect.x > 0.340 * WIDTH:
+        if keys_pressed[self.left] and self.rect.x > 0.3406 * WIDTH:
             # wartość ograniczenia ruchu w lewo
             self.rect.x -= self.speed
 
-        if keys_pressed[self.right] and self.rect.x < 0.515 * WIDTH:
+        if keys_pressed[self.right] and self.rect.x < 0.514 * WIDTH:
             # wartość ograniczenia ruchu w prawo
             self.rect.x += self.speed
 
@@ -131,9 +131,9 @@ class Hero(pygame.sprite.Sprite):
 
     def show_lives(self):
         for i in range(self.lives):
-            WIN.blit(self.hear_image, (15 + i * self.heart_width, 15, 20, 20))
+            WIN.blit(self.hear_image, (35 + i * self.heart_width, 25, self.heart_height, self.heart_width))
         for i in range(3 - self.lives):
-            WIN.blit(self.broken_heart_image, (15 + (self.lives + i) * self.heart_width, 15, 20, 20))
+            WIN.blit(self.broken_heart_image, (35 + (self.lives + i) * self.heart_width, 25, self.heart_height, self.heart_width))
 
     def update(self, keys_pressed):
         self.update_animation()
