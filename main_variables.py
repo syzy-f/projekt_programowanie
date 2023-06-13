@@ -1,5 +1,6 @@
 import os
 import pygame
+import sys
 
 # FPS'y
 FPS = 60
@@ -29,3 +30,16 @@ MIN_DISTANCE_BETWEEN_OBSTACLES = 500  # Minimalna odległość między przeszkod
 # Kolory
 RED = (255, 0, 0)
 GRAY = (128, 128, 128)
+
+# Poziomy trudności
+
+obstacle_item_ratio = 0.8
+
+def difficulty_level (level):
+    if level == "easy":
+        obs = 0.4 
+    elif level =="medium":
+        obs = 0.6
+    elif level == "hard":
+        obs = 0.8
+    return obs

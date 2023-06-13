@@ -65,7 +65,6 @@ class Train(Item):
     def train_collide(self,player):
         if pygame.sprite.collide_mask(player, self):
             player.lives -= 1
-            player.decrease_life()
 
 
 class Fans(Item):
@@ -80,5 +79,4 @@ class Fans(Item):
     def fans_collide(self,player):
         if pygame.sprite.collide_mask(player, self):
             player.lives -= 1
-            player.decrease_life()
 

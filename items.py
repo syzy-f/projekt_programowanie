@@ -73,8 +73,8 @@ class Coffee(Item):
         super().__init__()
     def coffee_collide(self,player):
         if pygame.sprite.collide_mask(player, self):
-            if player.lives < 3:
-                player.lives += 1
+            if player.speed < 45:
+                player.speed += 3
 
 
 

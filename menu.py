@@ -1,106 +1,66 @@
 import pygame, os, time, sys
+from main_variables import WIN,WIDTH,HEIGHT
+from characters import Hero
 
-class Przyciski():
-    def __init__(self, x, y, obrazek, skala):
-        szerokosc = obrazek.get_width()
-        wysokosc = obrazek.get_height()
-        self.image = pygame.transform.scale(obrazek, (int(szerokosc * skala), int(wysokosc * skala)))
-        self.prostokat = self.image.get_rect()
-        self.prostokat.topleft = (x, y)
-        self.klikniete = False
-    
-    def narysuj(self, powierzchnia):
-        action = False
-        pozycja_myszki = pygame.mouse.get_pos()
-        if self.prostokat.collidepoint(pozycja_myszki):
-            if pygame.mouse.get_pressed()[0] == 1 and not self.klikniete:
-                self.klikniete = True
-                action = True
-        if pygame.mouse.get_pressed()[0] == 0:
-            self.klikniete = False
-        powierzchnia.blit(self.image, self.prostokat.topleft)
-        return action
+menu_state ="main"
 
-def wyswietlanie_tekstu(tekst, czcionka, kolor_tekstu, x, y):
-    wyswietlacz = pygame.display.set_mode((1600, 900))
-    napis = czcionka.render(tekst, True, kolor_tekstu)
-    wyswietlacz.blit(napis, (x, y))
+class Button():
+	def __init__(self, x, y, image, scale):
+		self.width = image.get_width()
+		self.height = image.get_height()
+		self.scale = scale
+		self.image = pygame.transform.scale(image, (int(self.width * self.scale), int(self.height * scale)))
+		self.rect = self.image.get_rect()
+		self.rect.topleft = (x-((self.width * self.scale)/2), y)
+		self.clicked = False
+	def draw(self, surface=WIN):
+		action = False
+		#get mouse position
+		pos = pygame.mouse.get_pos()
 
-def menu_start():
-    wyswietlacz = pygame.display.set_mode((1600, 900))
-    clicktoplay = pygame.image.load(os.path.join ('assets/menu', "clicktoplay.png"))
-    play_obrazek = pygame.image.load(os.path.join ('assets/menu', "play.png"))
-    play_przycisk = Przyciski(660, 650, play_obrazek, 0.19)
-    running = True
-    while running:
-        wyswietlacz.blit(clicktoplay, (0,0))
-        if play_przycisk.narysuj(wyswietlacz):
-            return False
-        
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                return False
+		#check mouseover and clicked conditions
+		if self.rect.collidepoint(pos):
+			if pygame.mouse.get_pressed()[0] == 1 and self.clicked == False:
+				self.clicked = True
+				action = True
 
-        pygame.display.update()
+		if pygame.mouse.get_pressed()[0] == 0:
+			self.clicked = False
 
-def menu_stop():
-    wyswietlacz = pygame.display.set_mode((1600, 900))
+		#draw button on screen
+		surface.blit(self.image, (self.rect.x, self.rect.y))
 
-    background_menu = pygame.image.load(os.path.join ('assets/menu', "menu_background.png"))
+		return action
 
-    resume_obrazek = pygame.image.load(os.path.join ('assets/menu', "resume.png"))
-    quit_obrazek = pygame.image.load(os.path.join ('assets/menu', "quit.png"))
-
-    quit_przycisk = Przyciski(600, 600, quit_obrazek, 0.22)
-    resume_przycisk = Przyciski(600, 350, resume_obrazek, 0.22)
-    
-    zastopowac_gre = True
-    while zastopowac_gre:
-        wyswietlacz.blit(background_menu, (0,0))
-        if resume_przycisk.narysuj(wyswietlacz):
-            zastopowac_gre = False
-        elif quit_przycisk.narysuj(wyswietlacz):
-            sys.exit()
-
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                return False
-
-        pygame.display.update()
+def change_position(button,x,y):
+    button.rect.topleft = ((WIDTH*x)-((button.width * button.scale)/2), HEIGHT *y)
 
 
-def menu_end(start, stop, start_zatrzymania, stop_zatrzymania):
-    wyswietlacz = pygame.display.set_mode((1600, 900))
 
-    theend = pygame.image.load(os.path.join ('assets/menu', "theend.png"))
+#ZMIENNE
+background_image = pygame.image.load(os.path.join ('assets/menu', "clicktoplay.png"))
+background_resume_image = pygame.image.load(os.path.join ('assets/menu', "menu_background.png"))
+background_lost_image = pygame.image.load(os.path.join ('assets/menu', "theend.png"))
 
-    quit_obrazek = pygame.image.load(os.path.join ('assets/menu', "quit.png"))
-    restart_obrazek = pygame.image.load(os.path.join ('assets/menu', "restart.png"))
+play_button_img = pygame.image.load(os.path.join ('assets/menu', "play.png"))
+options_button_img = pygame.image.load(os.path.join ('assets/menu', "options.png"))
+easy_button_img = pygame.image.load(os.path.join ('assets/menu', "easy.png"))
+medium_button_img = pygame.image.load(os.path.join ('assets/menu', "medium.png"))
+hard_button_img = pygame.image.load(os.path.join ('assets/menu', "hard.png"))
+levels_button_img = pygame.image.load(os.path.join ('assets/menu', "levels.png"))
+resume_button_img = pygame.image.load(os.path.join ('assets/menu', "resume.png"))
+quit_button_img = pygame.image.load(os.path.join ('assets/menu', "quit.png"))
 
-    quit_przycisk = Przyciski(1200, 500, quit_obrazek, 0.15)
-    restart_przycisk = Przyciski(150, 500, restart_obrazek, 0.15)
+start_button = Button(0.25*WIDTH,0.8*HEIGHT,play_button_img,0.1)
+options_button = Button(0.5*WIDTH,0.8*HEIGHT,options_button_img,0.1)
+levels_button = Button(0.5*WIDTH,0.4*HEIGHT,levels_button_img,0.1)
+easy_button = Button(0.25*WIDTH,0.6*HEIGHT,easy_button_img,0.1)
+medium_button = Button(0.5*WIDTH,0.6*HEIGHT,medium_button_img,0.1)
+hard_button = Button(0.75*WIDTH,0.6*HEIGHT,hard_button_img,0.1)
+resume_button = Button(0.25*WIDTH,0.6*HEIGHT,resume_button_img,0.1)
+quit_button = Button(0.75*WIDTH,0.6*HEIGHT,quit_button_img,0.1)
 
-    running = True
-    while running:
-        wyswietlacz.blit(theend, (0,0))
-        czas_zatrzymania = stop_zatrzymania - start_zatrzymania
-        czas_trwania = stop - start - czas_zatrzymania
-        zaokraglony_czas_trawania = round(czas_trwania, 2)
-        napis = czcionka.render(str(zaokraglony_czas_trawania), True, kolor_tekstu)
-        wyswietlacz.blit(napis, (550, 420))
-        if restart_przycisk.narysuj(wyswietlacz):
-            return False
-        elif quit_przycisk.narysuj(wyswietlacz):
-            sys.exit()
-        
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                return False
-
-        pygame.display.update()
-
-pygame.init()
-
-pygame.display.set_caption("Menu")
-czcionka = pygame.font.SysFont("arialblack", 210)
-kolor_tekstu = (255, 255, 255)
+#game loop
+game_paused = False
+menu_state = "main"
+run = True
