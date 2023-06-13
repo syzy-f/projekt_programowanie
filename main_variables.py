@@ -25,7 +25,7 @@ WIN = pygame.display.set_mode((WIDTH,HEIGHT))
 # Zmienne lini
 LANE_WIDTH = (WIDTH * 0.025) // 3  # Szerokość pojedynczego pasa ruchu
 TOR_OFFSET = (WIDTH - (3 * LANE_WIDTH + 2 * 105)) // 2  # Przesunięcie toru względem lewej krawędzi. Te 105 to moja zabawa pikselami, może to trzeba będzie usunąć
-MIN_DISTANCE_BETWEEN_OBSTACLES = 500  # Minimalna odległość między przeszkodami. 500 jest chyba optymalne, od 400 i mniej gra może stać się niemożliwa do przejścia. Można tego używać do manipulowania poziomem trudności.
+MIN_DISTANCE_BETWEEN_OBSTACLES = 550  # Minimalna odległość między przeszkodami. 500 jest chyba optymalne, od 400 i mniej gra może stać się niemożliwa do przejścia. Można tego używać do manipulowania poziomem trudności.
 
 # Kolory
 RED = (255, 0, 0)
@@ -37,9 +37,9 @@ obstacle_item_ratio = 0.8
 
 def difficulty_level (level):
     if level == "easy":
-        obs = 0.4 
+        obs = 0.5 
     elif level =="medium":
-        obs = 0.6
+        obs = 0.75
     elif level == "hard":
-        obs = 0.8
+        obs = 0.95
     return obs
