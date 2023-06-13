@@ -1,2 +1,5 @@
-# project_juki
- Projekt na zaliczenie z programowania u Jukiewicz
+# Bimba Surfers
+Tymon Ruszkiewicz
+Weronika Sztukiewicz
+Weronika Murawka
+Mateusz Nosarzewski
