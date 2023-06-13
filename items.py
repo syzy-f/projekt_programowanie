@@ -17,7 +17,7 @@ class Item(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = (self.position_x, self.position_y)
         self.mask = pygame.mask.from_surface(self.image)
-    #nowe funkcje
+
     
     def move_rect(self):
             self.rect.center = (self.position_x, self.position_y)
@@ -42,7 +42,7 @@ class Item(pygame.sprite.Sprite):
 
     def draw(self, win):
         win.blit(self.image, (self.rect.x, self.rect.y))
-    #koniec nowych funkcji
+
     
 
 

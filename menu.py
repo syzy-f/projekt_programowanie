@@ -15,10 +15,10 @@ class Button():
 		self.clicked = False
 	def draw(self, surface=WIN):
 		action = False
-		#get mouse position
+		#pozycja myszki
 		pos = pygame.mouse.get_pos()
 
-		#check mouseover and clicked conditions
+		#sprawdzenie hoveru i kliknięcia
 		if self.rect.collidepoint(pos):
 			if pygame.mouse.get_pressed()[0] == 1 and self.clicked == False:
 				self.clicked = True
@@ -27,7 +27,7 @@ class Button():
 		if pygame.mouse.get_pressed()[0] == 0:
 			self.clicked = False
 
-		#draw button on screen
+		#rysowanie buttona
 		surface.blit(self.image, (self.rect.x, self.rect.y))
 
 		return action
@@ -60,7 +60,3 @@ hard_button = Button(0.75*WIDTH,0.6*HEIGHT,hard_button_img,0.1)
 resume_button = Button(0.25*WIDTH,0.6*HEIGHT,resume_button_img,0.1)
 quit_button = Button(0.75*WIDTH,0.6*HEIGHT,quit_button_img,0.1)
 
-#game loop
-game_paused = False
-menu_state = "main"
-run = True
