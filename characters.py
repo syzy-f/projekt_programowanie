@@ -51,8 +51,8 @@ class Hero(pygame.sprite.Sprite):
         self.heart_height = 30
 
         # Obrazki i przeskalowanie
-        self.hear_image = pygame.image.load(os.path.join('assets/characters', 'heart.png')).convert_alpha()
-        self.hear_image = pygame.transform.scale(self.hear_image, (self.heart_width, self.heart_height))
+        self.heart_image = pygame.image.load(os.path.join('assets/characters', 'heart.png')).convert_alpha()
+        self.heart_image = pygame.transform.scale(self.heart_image, (self.heart_width, self.heart_height))
         self.broken_heart_image = pygame.image.load(os.path.join('assets/characters', 'broken_heart.png')).convert_alpha()
         self.broken_heart_image = pygame.transform.scale(self.broken_heart_image, (self.heart_width, self.heart_height))
 
@@ -118,7 +118,7 @@ class Hero(pygame.sprite.Sprite):
 
     def show_lives(self):
         for i in range(self.lives):
-            WIN.blit(self.hear_image, (35 + i * self.heart_width, 15, self.heart_height, self.heart_width))
+            WIN.blit(self.heart_image, (35 + i * self.heart_width, 15, self.heart_height, self.heart_width))
         for i in range(3 - self.lives):
             WIN.blit(self.broken_heart_image, (35 + (self.lives + i) * self.heart_width, 15, self.heart_height, self.heart_width))
 
