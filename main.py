@@ -57,18 +57,23 @@ def main():
             for lane in [0, 1, 2]:
                 if lane not in lanes_with_obstacles:
                     if len(track_obstacles) == 0:
-                        track_obstacle = Fans(lane)  # Utworzenie przeszkody, gdy nie ma innych przeszkód
+                        track_obstacle = Fans(lane)  #utworzenie przeszkody, gdy nie ma innych przeszkód
                         track_obstacles.add(track_obstacle)
+                        lanes_with_obstacles.add(lane)
                     else:
                         last_obstacle = max(track_obstacles, key=lambda o: o.rect.y)
                         if last_obstacle.rect.y > MIN_DISTANCE_BETWEEN_OBSTACLES:
                             if pygame.time.get_ticks() - last_obstacle_spawn_time > 800: # Poniżej 800 jest dla koxów
-                                # Losowy wybór przeszkody/bonusu
-                                track_obstacle_type = random.choice([Train, Fans, Hotdog, Coffee])
-                                track_obstacle = track_obstacle_type(lane)
-                                # Wybór losowej przeszkody i wrzucenie jej do losowego toru
-                                track_obstacles.add(track_obstacle)
-                                last_obstacle_spawn_time = pygame.time.get_ticks()
+                                # Wybór losowego toru
+                                random_lane = random.choice([0, 1, 2]) #dodałęm to, żeby nie było wszystkich itemów na jednym torze
+                                if random_lane not in lanes_with_obstacles:
+                                    #losowy wybór przeszkody/bonusu
+                                    track_obstacle_type = random.choice([Train, Fans, Hotdog, Coffee])
+                                    track_obstacle = track_obstacle_type(random_lane)
+                                    #dodanie wygenerowanego itemu do odpowiedniego toru
+                                    track_obstacles.add(track_obstacle)
+                                    lanes_with_obstacles.add(random_lane) #
+                                    last_obstacle_spawn_time = pygame.time.get_ticks()
                                 
             # Funkcja pobierająca inputy z klawiatury odnośnie poruszania się
             player.hero_controls(pygame.key.get_pressed())
