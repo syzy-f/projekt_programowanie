@@ -2,5 +2,5 @@
 Uczestnicy:
 Tymon Ruszkiewicz (syzyf)
 Mateusz Nosarzewski (niepokorna-madzia.82)
-Werka Sztukiewicz 
+Werka Sztukiewicz (gasnicaisia)
 Weronika Murawka (wermur)
