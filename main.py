@@ -161,6 +161,7 @@ while main_loop:
             #Wyczyszczenie grupy spritów
             track_obstacles.empty()
         
+        #Licznik czasu
         stop = time.time()
         czas_zatrzymania = stop_zatrzymania - start_zatrzymania
         czas_trwania = stop - start - czas_zatrzymania

@@ -15,11 +15,12 @@ clock = pygame.time.Clock()
 
 # Zmienne okna
 # Szerokość okna
-WIDTH = 1600
+WIDTH = 900
 # Wysokość okna
-HEIGHT = 900
+HEIGHT = 500
 # Okno
-background = pygame.image.load(os.path.join('assets/background', 'background.png'))
+
+background = pygame.transform.scale(pygame.image.load(os.path.join ('assets/background', "background.png")), (WIDTH, HEIGHT))
 WIN = pygame.display.set_mode((WIDTH,HEIGHT))
 
 # Zmienne lini

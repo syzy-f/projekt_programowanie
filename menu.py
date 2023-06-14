@@ -38,9 +38,9 @@ def change_position(button,x,y):
 
 
 #ZMIENNE
-background_image = pygame.image.load(os.path.join ('assets/menu', "clicktoplay.png"))
-background_resume_image = pygame.image.load(os.path.join ('assets/menu', "menu_background.png"))
-background_lost_image = pygame.image.load(os.path.join ('assets/menu', "theend.png"))
+background_image = pygame.transform.scale(pygame.image.load(os.path.join ('assets/menu', "clicktoplay.png")), (WIDTH, HEIGHT))
+background_resume_image = pygame.transform.scale(pygame.image.load(os.path.join ('assets/menu', "menu_background.png")), (WIDTH, HEIGHT))
+background_lost_image = pygame.transform.scale(pygame.image.load(os.path.join ('assets/menu', "theend.png")), (WIDTH, HEIGHT))
 
 play_button_img = pygame.image.load(os.path.join ('assets/menu', "play.png"))
 options_button_img = pygame.image.load(os.path.join ('assets/menu', "options.png"))
