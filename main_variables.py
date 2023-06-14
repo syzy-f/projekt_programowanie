@@ -15,9 +15,9 @@ clock = pygame.time.Clock()
 
 # Zmienne okna
 # Szerokość okna
-WIDTH = 900
+WIDTH = 1600
 # Wysokość okna
-HEIGHT = 500
+HEIGHT = 900
 # Okno
 
 background = pygame.transform.scale(pygame.image.load(os.path.join ('assets/background', "background.png")), (WIDTH, HEIGHT))
