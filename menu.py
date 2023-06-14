@@ -50,6 +50,7 @@ hard_button_img = pygame.image.load(os.path.join ('assets/menu', "hard.png"))
 levels_button_img = pygame.image.load(os.path.join ('assets/menu', "levels.png"))
 resume_button_img = pygame.image.load(os.path.join ('assets/menu', "resume.png"))
 quit_button_img = pygame.image.load(os.path.join ('assets/menu', "quit.png"))
+restart_button_img = pygame.image.load(os.path.join ('assets/menu', "restart.png"))
 
 start_button = Button(0.25*WIDTH,0.8*HEIGHT,play_button_img,0.1)
 options_button = Button(0.5*WIDTH,0.8*HEIGHT,options_button_img,0.1)
@@ -59,4 +60,5 @@ medium_button = Button(0.5*WIDTH,0.6*HEIGHT,medium_button_img,0.1)
 hard_button = Button(0.75*WIDTH,0.6*HEIGHT,hard_button_img,0.1)
 resume_button = Button(0.25*WIDTH,0.6*HEIGHT,resume_button_img,0.1)
 quit_button = Button(0.75*WIDTH,0.6*HEIGHT,quit_button_img,0.1)
+restart_button = Button(0.25*WIDTH,0.6*HEIGHT,restart_button_img,0.1)
 

@@ -56,15 +56,13 @@ while main_loop:
             levels_button.draw()
             if easy_button.draw():
                 difficulty = "easy"
-                print(obstacle_item_ratio)
+
                 menu_state = "main"
             if medium_button.draw():
                 difficulty = "medium"
-                print(obstacle_item_ratio)
                 menu_state = "main"
             if hard_button.draw():
                 difficulty = "hard"
-                print(obstacle_item_ratio)
                 menu_state = "main"
         elif menu_state == "pause":
             WIN.blit(background_resume_image,(0,0))
@@ -80,8 +78,11 @@ while main_loop:
             czas_trwania = stop - start - czas_zatrzymania
             zaokraglony_czas_trawania = round(czas_trwania, 2)
             napis = czcionka.render(str(zaokraglony_czas_trawania), True, kolor_tekstu)
-            WIN.blit(napis, (0.35*WIDTH,0.5*HEIGHT))
-            if resume_button.draw():
+            if zaokraglony_czas_trawania < 10:
+                WIN.blit(napis, (0.35*WIDTH,0.5*HEIGHT))
+            else:
+                WIN.blit(napis, (0.30*WIDTH,0.5*HEIGHT))
+            if restart_button.draw():
                 menu_state = "main"
                 game_running = False
                 player.lives = 3
@@ -89,7 +90,6 @@ while main_loop:
                 pygame.quit()
     else:
         #Tło
-        
         background_y += VEL
         if background_y >= background.get_height():
             # Tło idzie w dół
@@ -117,13 +117,14 @@ while main_loop:
                 else:
                     last_obstacle = max(track_obstacles, key=lambda o: o.rect.y)
                     if last_obstacle.rect.y > MIN_DISTANCE_BETWEEN_OBSTACLES:
-                        if pygame.time.get_ticks() - last_obstacle_spawn_time > 440: # Poniżej 800 jest dla koxów
+                        if pygame.time.get_ticks() - last_obstacle_spawn_time > difficulty_level(difficulty)[1]: # Poniżej 800 jest dla koxów
                             # Wybór losowego toru
+                            print(difficulty_level(difficulty)[1])
                             random_lane = random.choice([0, 1, 2])
                             if random_lane not in lanes_with_obstacles:
                                 # Losowy wybór przeszkody/bonusu
                                 random_number = random.random()  
-                                if random_number < difficulty_level(difficulty):  # 80% szansy na pojawienie się przeszkody, można manipulować przy poziomie trudności
+                                if random_number < difficulty_level(difficulty)[0]:  # 80% szansy na pojawienie się przeszkody, można manipulować przy poziomie trudności
                                     track_obstacle_type = random.choice([Train, Fans])
                                 else:  # 20% szansy na pojawienie się "coffee" lub "hotdog"
                                     track_obstacle_type = random.choice([Coffee, Hotdog])
@@ -148,9 +149,8 @@ while main_loop:
                 element.train_collide(player)
             element.item_collide(player)
         #Koniec kolizji
-        pygame.display.flip()
-        pygame.display.update()
-        clock.tick(FPS)
+
+        
         
         #Koniec gry
         if player.lives <= 0:
@@ -158,6 +158,23 @@ while main_loop:
             menu_state = "lost"
             #Zatrzymanie licznika
             stop = time.time()
+            #Wyczyszczenie grupy spritów
+            track_obstacles.empty()
+        
+        stop = time.time()
+        czas_zatrzymania = stop_zatrzymania - start_zatrzymania
+        czas_trwania = stop - start - czas_zatrzymania
+        zaokraglony_czas_trawania = round(czas_trwania, 1)
+        napis = czcionka.render(str(zaokraglony_czas_trawania), True, kolor_tekstu)
+        if zaokraglony_czas_trawania < 10:
+            WIN.blit(napis, (0.75*WIDTH,0.7*HEIGHT))
+        else:
+            WIN.blit(napis, (0.68*WIDTH,0.7*HEIGHT))
+        #Odświeżanie
+        pygame.display.flip()
+        pygame.display.update()
+        clock.tick(FPS)
+        
             
     #eventy
     for event in pygame.event.get():

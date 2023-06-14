@@ -33,13 +33,16 @@ GRAY = (128, 128, 128)
 
 # Poziomy trudności
 
-obstacle_item_ratio = 0.8
+
 
 def difficulty_level (level):
     if level == "easy":
-        obs = 0.5 
+        split = 0.5
+        obs = 800 
     elif level =="medium":
-        obs = 0.75
+        split = 0.75
+        obs = 700
     elif level == "hard":
-        obs = 0.95
-    return obs
+        split = 0.95
+        obs = 650
+    return split, obs
